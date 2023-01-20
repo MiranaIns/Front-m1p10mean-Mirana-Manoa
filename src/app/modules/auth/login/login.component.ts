@@ -63,7 +63,7 @@ export class LoginComponent implements OnInit {
       this.authService.login(userInformations).subscribe({
         next: res => {
           if(res.status > HttpStatusConst.SUCCESS ){
-              this.openErrorSnackBar('Adresse e-mail ou mot de passe invalide !');
+              this.openErrorSnackBar('Adresse e-mail ou mot de passe incorrect !');
           }
           else {
             // @ts-ignore
@@ -72,12 +72,12 @@ export class LoginComponent implements OnInit {
           }
         },
         error: () => {
-          this.openErrorSnackBar('Une erreur est survenue !');
+          this.openErrorSnackBar("Une erreur s'est produite !");
         },
         complete: () => {}
       });
     } catch (error) {
-      this.openErrorSnackBar('Une erreur est survenue !');
+      this.openErrorSnackBar("Une erreur s'est produite !");
     }
   }
 }
