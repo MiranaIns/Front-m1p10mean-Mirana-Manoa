@@ -1,3 +1,3 @@
 export const LocalStorageConst = {
-  ACCESS_TOKEN : 'acces_token'
+  ACCESS_TOKEN : 'access_token'
 }

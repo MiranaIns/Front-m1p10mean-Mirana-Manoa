@@ -18,7 +18,10 @@ const routes: Routes = [
     ]
   },
   {
-    path : 'garage', component : TestComponent, canActivate : [AuthGuard]
+    path : 'garage', component : TestComponent, canActivate : [AuthGuard],
+    children : [
+    	{ path: 'accueil', component:TestComponent}
+    ]
   },
   {
     path: '**',
