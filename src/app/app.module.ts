@@ -11,6 +11,7 @@ import { LoginComponent } from './modules/auth/login/login.component';
 import { TestComponent } from './modules/test/test.component';
 import { AuthComponent } from './layout/components/auth/auth.component';
 import { ErrorSnackBarComponent } from './shared/components/error-snack-bar/error-snack-bar.component';
+import { InscriptionComponent } from './modules/auth/inscription/inscription.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { ErrorSnackBarComponent } from './shared/components/error-snack-bar/erro
     LoginComponent,
     TestComponent,
     AuthComponent,
-    ErrorSnackBarComponent
+    ErrorSnackBarComponent,
+    InscriptionComponent
   ],
     imports: [
         BrowserModule,
