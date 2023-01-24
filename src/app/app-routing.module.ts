@@ -5,6 +5,7 @@ import {TestComponent} from './modules/test/test.component'
 import {AuthComponent} from "./layout/components/auth/auth.component";
 import {AuthGuard} from "./core/guard/auth-guard";
 import {InscriptionComponent} from "./modules/auth/inscription/inscription.component";
+import {AdminLoginComponent} from "./modules/auth/admin-login/admin-login.component";
 
 
 const routes: Routes = [
@@ -18,6 +19,15 @@ const routes: Routes = [
       },
       {
         path :'inscription',component : InscriptionComponent
+      }
+    ]
+  },
+  {
+    path : 'admin/auth',
+    component : AuthComponent,
+    children : [
+      {
+        path :'login',component : AdminLoginComponent
       }
     ]
   },

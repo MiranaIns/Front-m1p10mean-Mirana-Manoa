@@ -12,6 +12,7 @@ import { TestComponent } from './modules/test/test.component';
 import { AuthComponent } from './layout/components/auth/auth.component';
 import { SnackBarComponent } from './shared/components/snack-bar/snack-bar.component';
 import { InscriptionComponent } from './modules/auth/inscription/inscription.component';
+import { AdminLoginComponent } from './modules/auth/admin-login/admin-login.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { InscriptionComponent } from './modules/auth/inscription/inscription.com
     TestComponent,
     AuthComponent,
     SnackBarComponent,
-    InscriptionComponent
+    InscriptionComponent,
+    AdminLoginComponent
   ],
     imports: [
         BrowserModule,
