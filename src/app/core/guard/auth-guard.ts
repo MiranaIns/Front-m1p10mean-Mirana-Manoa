@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import {AuthGuardService} from "../services/auth-guard/auth-guard.service";
 import { LocalStorageService } from 'src/app/shared/services/local-storage/local-storage.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ErrorSnackBarComponent } from 'src/app/shared/components/error-snack-bar/error-snack-bar.component';
+import { SnackBarComponent } from 'src/app/shared/components/snack-bar/snack-bar.component';
 
 
 @Injectable({
@@ -17,11 +17,11 @@ export class AuthGuard implements CanActivate {
   }
 
   openErrorSnackBar(errorMessage: String) {
-    this._snackBar.openFromComponent(ErrorSnackBarComponent, {
+    this._snackBar.openFromComponent(SnackBarComponent, {
       data : {
         message : errorMessage
       },
-      duration: 2000,
+      duration: 3000,
       verticalPosition : 'bottom',
       horizontalPosition : 'center',
       panelClass : 'error'
@@ -32,7 +32,7 @@ export class AuthGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     if(!this.authGuardService.checkAuthorisation()){
-      this.openErrorSnackBar("Vous n'êtes pas connecté(e) !");
+      this.openErrorSnackBar("Vous devez vous connecter pour accéder à cette page.");
       this.router.navigate(['/']);
       return false;
     }

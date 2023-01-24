@@ -3,7 +3,7 @@ import {FormControl, FormGroup} from "@angular/forms";
 import {AuthService} from "../../../data/services/auth/auth.service";
 import {HttpStatusConst} from "../../../shared/constant/http-status.const";
 import {MatSnackBar} from '@angular/material/snack-bar';
-import { ErrorSnackBarComponent } from 'src/app/shared/components/error-snack-bar/error-snack-bar.component';
+import {SnackBarComponent} from 'src/app/shared/components/snack-bar/snack-bar.component';
 import { LocalStorageService } from 'src/app/shared/services/local-storage/local-storage.service';
 import { LocalStorageConst } from 'src/app/shared/constant/local-storage.const';
 import { Router } from '@angular/router';
@@ -43,11 +43,11 @@ export class LoginComponent implements OnInit {
   }
 
   openErrorSnackBar(errorMessage: String) {
-    this._snackBar.openFromComponent(ErrorSnackBarComponent, {
+    this._snackBar.openFromComponent(SnackBarComponent, {
       data : {
         message : errorMessage
       },
-      duration: 2000,
+      duration: 3000,
       verticalPosition : 'bottom',
       horizontalPosition : 'center',
       panelClass : 'error'
@@ -63,7 +63,7 @@ export class LoginComponent implements OnInit {
       this.authService.login(userInformations).subscribe({
         next: res => {
           if(res.status > HttpStatusConst.SUCCESS ){
-              this.openErrorSnackBar('Adresse e-mail ou mot de passe incorrect !');
+              this.openErrorSnackBar("Echec de la connexion. Vérifiez votre adresse e-mail et votre mot de passe.");
           }
           else {
             // @ts-ignore

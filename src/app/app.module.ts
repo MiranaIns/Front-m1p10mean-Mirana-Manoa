@@ -10,7 +10,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './modules/auth/login/login.component';
 import { TestComponent } from './modules/test/test.component';
 import { AuthComponent } from './layout/components/auth/auth.component';
-import { ErrorSnackBarComponent } from './shared/components/error-snack-bar/error-snack-bar.component';
+import { SnackBarComponent } from './shared/components/snack-bar/snack-bar.component';
 import { InscriptionComponent } from './modules/auth/inscription/inscription.component';
 
 @NgModule({
@@ -19,7 +19,7 @@ import { InscriptionComponent } from './modules/auth/inscription/inscription.com
     LoginComponent,
     TestComponent,
     AuthComponent,
-    ErrorSnackBarComponent,
+    SnackBarComponent,
     InscriptionComponent
   ],
     imports: [

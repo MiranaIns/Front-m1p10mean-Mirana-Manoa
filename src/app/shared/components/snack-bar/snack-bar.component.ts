@@ -3,10 +3,10 @@ import { MAT_SNACK_BAR_DATA } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-error-snack-bar',
-  templateUrl: './error-snack-bar.component.html',
-  styleUrls: ['./error-snack-bar.component.css']
+  templateUrl: './snack-bar.component.html',
+  styleUrls: ['./snack-bar.component.css']
 })
-export class ErrorSnackBarComponent implements OnInit {
+export class SnackBarComponent implements OnInit {
 
   constructor(@Inject(MAT_SNACK_BAR_DATA) public data: any) { }
 

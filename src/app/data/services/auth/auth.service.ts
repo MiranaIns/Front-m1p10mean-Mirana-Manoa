@@ -14,4 +14,8 @@ export class AuthService {
   public login(user:any): Observable<JsonModel> {
     return this.httpRequestService.post(environment.apiUrl + DataWsConst.WS_LOGIN,user);
   }
+
+  public inscription(user:any): Observable<JsonModel> {
+    return this.httpRequestService.post(environment.apiUrl + DataWsConst.WS_INSCRIPTION,user);
+  }
 }

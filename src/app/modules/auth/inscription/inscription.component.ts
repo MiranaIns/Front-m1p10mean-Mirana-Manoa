@@ -4,7 +4,7 @@ import {Router} from "@angular/router";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {AuthService} from "../../../data/services/auth/auth.service";
 import {LocalStorageService} from "../../../shared/services/local-storage/local-storage.service";
-import {ErrorSnackBarComponent} from "../../../shared/components/error-snack-bar/error-snack-bar.component";
+import {SnackBarComponent} from "../../../shared/components/snack-bar/snack-bar.component";
 import {HttpStatusConst} from "../../../shared/constant/http-status.const";
 import {LocalStorageConst} from "../../../shared/constant/local-storage.const";
 
@@ -19,7 +19,7 @@ import {LocalStorageConst} from "../../../shared/constant/local-storage.const";
   ]
 })
 export class InscriptionComponent implements OnInit {
-  loginForm: FormGroup;
+  inscriptionForm: FormGroup;
   theresError: boolean = false;
   error: string = "";
 
@@ -29,9 +29,12 @@ export class InscriptionComponent implements OnInit {
     private authService: AuthService,
     private localStorageService : LocalStorageService
   ) {
-    this.loginForm = new FormGroup({
+    this.inscriptionForm = new FormGroup({
+      nom:new FormControl(),
+      prenom:new FormControl(),
       email: new FormControl(),
-      password: new FormControl()
+      password: new FormControl(),
+      verifiedPassword : new FormControl()
     });
   }
 
@@ -41,39 +44,64 @@ export class InscriptionComponent implements OnInit {
   }
 
   openErrorSnackBar(errorMessage: String) {
-    this._snackBar.openFromComponent(ErrorSnackBarComponent, {
+    this._snackBar.openFromComponent(SnackBarComponent, {
       data : {
         message : errorMessage
       },
-      duration: 2000,
+      duration: 3000,
       verticalPosition : 'bottom',
       horizontalPosition : 'center',
       panelClass : 'error'
     });
   }
 
-  login() {
+  openSuccessSnackBar(errorMessage: String) {
+    this._snackBar.openFromComponent(SnackBarComponent, {
+      data : {
+        message : errorMessage
+      },
+      duration: 3000,
+      verticalPosition : 'bottom',
+      horizontalPosition : 'center',
+      panelClass : 'success'
+    });
+  }
+
+  inscription() {
     try {
       const userInformations = {
-        'mail': this.loginForm.value.email,
-        'mdp': this.loginForm.value.password
+        'nom':this.inscriptionForm.value.nom,
+        'prenom':this.inscriptionForm.value.prenom,
+        'mail': this.inscriptionForm.value.email,
+        'mdp': this.inscriptionForm.value.password,
+        'verified_mdp' : this.inscriptionForm.value.verifiedPassword
       }
-      this.authService.login(userInformations).subscribe({
-        next: res => {
-          if(res.status > HttpStatusConst.SUCCESS ){
-            this.openErrorSnackBar('Adresse e-mail ou mot de passe incorrect !');
-          }
-          else {
-            // @ts-ignore
-            this.localStorageService.setItem(LocalStorageConst.ACCESS_TOKEN,res.data[0].access_token);
-            this.router.navigate(['/garage/accueil']);
-          }
-        },
-        error: () => {
-          this.openErrorSnackBar("Une erreur s'est produite !");
-        },
-        complete: () => {}
-      });
+      if(userInformations.mdp!==userInformations.verified_mdp) {
+        this.openErrorSnackBar('Les mots de passe ne sont pas identiques. Veuillez vérifier et réessayer.');
+      }
+      else {
+        this.authService.inscription(userInformations).subscribe({
+          next: res => {
+            if(res.status > HttpStatusConst.CREATED ){
+              // @ts-ignore
+              if(res.errors == 'Account already exists') {
+                this.openErrorSnackBar("Vous avez déjà un compte. Veuillez vous connecter pour continuer.")
+              }
+              else {
+                this.openErrorSnackBar("Une erreur s'est produite !");
+              }
+            }
+            else {
+              this.router.navigate(['/auth/login']);
+              this.openSuccessSnackBar('Votre compte a été créé avec succès. Connectez-vous pour continuer.');
+            }
+          },
+          error: () => {
+            this.openErrorSnackBar("Une erreur s'est produite !");
+          },
+          complete: () => {}
+        });
+      }
     } catch (error) {
       this.openErrorSnackBar("Une erreur s'est produite !");
     }
