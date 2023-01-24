@@ -4,7 +4,6 @@ import {LoginComponent} from './modules/auth/login/login.component'
 import {TestComponent} from './modules/test/test.component'
 import {AuthComponent} from "./layout/components/auth/auth.component";
 import {AuthGuard} from "./core/guard/auth-guard";
-import {InscriptionComponent} from "./modules/auth/inscription/inscription.component";
 
 
 const routes: Routes = [
@@ -15,9 +14,6 @@ const routes: Routes = [
     children : [
       {
         path :'login',component : LoginComponent
-      },
-      {
-        path :'inscription',component : InscriptionComponent
       }
     ]
   },
