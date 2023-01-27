@@ -13,6 +13,7 @@ import { AuthComponent } from './layout/components/auth/auth.component';
 import { SnackBarComponent } from './shared/components/snack-bar/snack-bar.component';
 import { InscriptionComponent } from './modules/auth/inscription/inscription.component';
 import { AdminLoginComponent } from './modules/auth/admin-login/admin-login.component';
+import { UtilisateurTemplateComponent } from './layout/components/utilisateur/utilisateur-template/utilisateur-template.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { AdminLoginComponent } from './modules/auth/admin-login/admin-login.comp
     AuthComponent,
     SnackBarComponent,
     InscriptionComponent,
-    AdminLoginComponent
+    AdminLoginComponent,
+    UtilisateurTemplateComponent
   ],
     imports: [
         BrowserModule,

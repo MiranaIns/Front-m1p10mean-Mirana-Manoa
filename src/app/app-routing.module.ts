@@ -6,6 +6,9 @@ import {AuthComponent} from "./layout/components/auth/auth.component";
 import {AuthGuard} from "./core/guard/auth-guard";
 import {InscriptionComponent} from "./modules/auth/inscription/inscription.component";
 import {AdminLoginComponent} from "./modules/auth/admin-login/admin-login.component";
+import {
+  UtilisateurTemplateComponent
+} from "./layout/components/utilisateur/utilisateur-template/utilisateur-template.component";
 
 
 const routes: Routes = [
@@ -32,7 +35,7 @@ const routes: Routes = [
     ]
   },
   {
-    path : 'garage', component : TestComponent, canActivate : [AuthGuard],
+    path : 'garage', component : UtilisateurTemplateComponent, canActivate : [AuthGuard],
     children : [
     	{ path: 'accueil', component:TestComponent}
     ]
