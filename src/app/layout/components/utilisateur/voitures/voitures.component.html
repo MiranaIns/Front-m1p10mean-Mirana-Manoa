@@ -29,7 +29,7 @@
 </div>
 -->
 
-<div class="example-container">
+<div class="example-container" style="width: 30%;">
   <h2>Vos voitures</h2>
 
   <div
@@ -38,7 +38,13 @@
     [cdkDropListData]="voitures"
     class="example-list"
     (cdkDropListDropped)="drop($event)">
-    <div class="example-box" *ngFor="let item of voitures" cdkDrag>{{item.voiture_marque}}</div>
+    <div class="example-box" *ngFor="let voiture of voitures" cdkDrag>
+      <div class="item-container">
+        <h3>{{voiture.voiture_immatriculation}}</h3>
+        <p><strong>Marque : </strong>{{voiture.voiture_marque}}</p>
+        <p><strong>Modele : </strong>{{voiture.voiture_modele}}</p>
+        <p><strong>Couleur : </strong><i class="mdi mdi-brightness-1" [style.color]="voiture.voiture_couleur"></i></p>
+      </div>
   </div>
 </div>
 

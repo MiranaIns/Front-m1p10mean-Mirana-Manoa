@@ -13,7 +13,7 @@ import { SnackBarComponent } from './shared/components/snack-bar/snack-bar.compo
 import { InscriptionComponent } from './modules/auth/inscription/inscription.component';
 import { AdminLoginComponent } from './modules/auth/admin-login/admin-login.component';
 import { UtilisateurTemplateComponent } from './layout/components/utilisateur/utilisateur-template/utilisateur-template.component';
-import { VoituresComponent } from './layout/components/utilisateur/voitures/voitures/voitures.component';
+import { VoituresComponent } from './layout/components/utilisateur/voitures/voitures.component';
 import {DragDropModule} from "@angular/cdk/drag-drop";
 
 @NgModule({
