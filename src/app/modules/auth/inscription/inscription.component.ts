@@ -14,10 +14,10 @@ import {DataErrorConst} from "../../../data/constant/data-error.const";
   selector: 'app-inscription',
   templateUrl: './inscription.component.html',
   styleUrls: ['./inscription.component.css',
-    '../../../backoffice/css/vertical-layout-light/style.css',
-    '../../../backoffice/vendors/css/vendor.bundle.base.css',
-    '../../../backoffice/vendors/feather/feather.css',
-    '../../../backoffice/vendors/ti-icons/css/themify-icons.css'
+    '../../../template/css/vertical-layout-light/style.css',
+    '../../../template/vendors/css/vendor.bundle.base.css',
+    '../../../template/vendors/feather/feather.css',
+    '../../../template/vendors/ti-icons/css/themify-icons.css'
   ]
 })
 export class InscriptionComponent implements OnInit {

@@ -15,7 +15,7 @@ import {
   selector: 'app-voitures',
   templateUrl: './voitures.component.html',
   styleUrls: ['./voitures.component.css',
-    "../../../backoffice/vendors/mdi/css/materialdesignicons.min.css"
+    "../../../template/vendors/mdi/css/materialdesignicons.min.css"
   ]
 })
 export class VoituresComponent implements OnInit {
