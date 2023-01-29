@@ -13,8 +13,10 @@ import { SnackBarComponent } from './shared/components/snack-bar/snack-bar.compo
 import { InscriptionComponent } from './modules/auth/inscription/inscription.component';
 import { AdminLoginComponent } from './modules/auth/admin-login/admin-login.component';
 import { UtilisateurTemplateComponent } from './layout/components/utilisateur/utilisateur-template/utilisateur-template.component';
-import { VoituresComponent } from './layout/components/utilisateur/voitures/voitures.component';
+import { VoituresComponent } from './modules/utilisateur/voitures/voitures.component';
 import {DragDropModule} from "@angular/cdk/drag-drop";
+import {MatIconModule} from "@angular/material/icon";
+import {MatButtonModule} from "@angular/material/button";
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import {DragDropModule} from "@angular/cdk/drag-drop";
     HttpClientModule,
     MatSnackBarModule,
     BrowserAnimationsModule,
-    DragDropModule
+    DragDropModule,
+    MatIconModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

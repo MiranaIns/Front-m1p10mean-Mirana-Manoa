@@ -7,7 +7,7 @@ import {InscriptionComponent} from "./modules/auth/inscription/inscription.compo
 import {AdminLoginComponent} from "./modules/auth/admin-login/admin-login.component";
 import { UtilisateurTemplateComponent } from "./layout/components/utilisateur/utilisateur-template/utilisateur-template.component";
 import {DataRoutingConst} from "./data/constant/data-routing.const";
-import {VoituresComponent} from "./layout/components/utilisateur/voitures/voitures.component";
+import {VoituresComponent} from "./modules/utilisateur/voitures/voitures.component";
 
 const routes: Routes = [
   { path: '',   redirectTo: DataRoutingConst.ROUTE_LOGIN, pathMatch: 'full' },
