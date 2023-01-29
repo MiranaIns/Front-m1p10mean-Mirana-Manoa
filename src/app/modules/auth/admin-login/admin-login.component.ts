@@ -8,6 +8,7 @@ import {SnackBarComponent} from "../../../shared/components/snack-bar/snack-bar.
 import {HttpStatusConst} from "../../../shared/constant/http-status.const";
 import {LocalStorageConst} from "../../../shared/constant/local-storage.const";
 import {DataRoutingConst} from "../../../data/constant/data-routing.const";
+import {DataErrorConst} from "../../../data/constant/data-error.const";
 
 @Component({
   selector: 'app-admin-login',
@@ -94,12 +95,12 @@ export class AdminLoginComponent implements OnInit {
           }
         },
         error: () => {
-          this.openErrorSnackBar("Une erreur s'est produite !");
+          this.openErrorSnackBar(DataErrorConst.UNKNOWN_ERROR);
         },
         complete: () => {}
       });
     } catch (error) {
-      this.openErrorSnackBar("Une erreur s'est produite !");
+      this.openErrorSnackBar(DataErrorConst.UNKNOWN_ERROR);
     }
   }
 }

@@ -8,6 +8,7 @@ import { LocalStorageService } from 'src/app/shared/services/local-storage/local
 import { LocalStorageConst } from 'src/app/shared/constant/local-storage.const';
 import { Router } from '@angular/router';
 import {DataRoutingConst} from "../../../data/constant/data-routing.const";
+import {DataErrorConst} from "../../../data/constant/data-error.const";
 
 @Component({
   selector: 'app-login',
@@ -73,12 +74,12 @@ export class LoginComponent implements OnInit {
           }
         },
         error: () => {
-          this.openErrorSnackBar("Une erreur s'est produite !");
+          this.openErrorSnackBar(DataErrorConst.UNKNOWN_ERROR);
         },
         complete: () => {}
       });
     } catch (error) {
-      this.openErrorSnackBar("Une erreur s'est produite !");
+      this.openErrorSnackBar(DataErrorConst.UNKNOWN_ERROR);
     }
   }
 }
