@@ -5,7 +5,6 @@ import {ReactiveFormsModule} from "@angular/forms";
 import { HttpClientModule } from '@angular/common/http';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 import { AppComponent } from './app.component';
 import { LoginComponent } from './modules/auth/login/login.component';
 import { AuthComponent } from './layout/components/auth/auth.component';
@@ -17,7 +16,8 @@ import { VoituresComponent } from './modules/utilisateur/voitures/voitures.compo
 import {DragDropModule} from "@angular/cdk/drag-drop";
 import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from "@angular/material/button";
-
+import { AjouterVoiturePopUpComponent } from './shared/components/ajouter-voiture-pop-up/ajouter-voiture-pop-up.component';
+import {MatDialogModule} from "@angular/material/dialog";
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +27,8 @@ import {MatButtonModule} from "@angular/material/button";
     InscriptionComponent,
     AdminLoginComponent,
     UtilisateurTemplateComponent,
-    VoituresComponent
+    VoituresComponent,
+    AjouterVoiturePopUpComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +39,8 @@ import {MatButtonModule} from "@angular/material/button";
     BrowserAnimationsModule,
     DragDropModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

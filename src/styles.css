@@ -15,3 +15,8 @@ body { margin: 0; font-family: Roboto, Nunito, "Helvetica Neue", sans-serif; }
   color: white;
   text-align: center;
 }
+
+.custom-container .mat-dialog-container {
+  border-radius: 10px !important;
+}
+
