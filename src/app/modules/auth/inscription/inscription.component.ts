@@ -7,6 +7,7 @@ import {LocalStorageService} from "../../../shared/services/local-storage/local-
 import {SnackBarComponent} from "../../../shared/components/snack-bar/snack-bar.component";
 import {HttpStatusConst} from "../../../shared/constant/http-status.const";
 import {LocalStorageConst} from "../../../shared/constant/local-storage.const";
+import {DataRoutingConst} from "../../../data/constant/data-routing.const";
 
 @Component({
   selector: 'app-inscription',
@@ -92,7 +93,7 @@ export class InscriptionComponent implements OnInit {
               }
             }
             else {
-              this.router.navigate(['/auth/login']);
+              this.router.navigate([DataRoutingConst.ROUTE_LOGIN]);
               this.openSuccessSnackBar('Votre compte a été créé avec succès. Connectez-vous pour continuer.');
             }
           },

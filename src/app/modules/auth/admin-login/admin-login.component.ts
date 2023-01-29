@@ -7,6 +7,7 @@ import {LocalStorageService} from "../../../shared/services/local-storage/local-
 import {SnackBarComponent} from "../../../shared/components/snack-bar/snack-bar.component";
 import {HttpStatusConst} from "../../../shared/constant/http-status.const";
 import {LocalStorageConst} from "../../../shared/constant/local-storage.const";
+import {DataRoutingConst} from "../../../data/constant/data-routing.const";
 
 @Component({
   selector: 'app-admin-login',
@@ -89,7 +90,7 @@ export class AdminLoginComponent implements OnInit {
               // @ts-ignore
               this.localStorageService.setItem(LocalStorageConst.ACCESS_TOKEN_RFI,res.data[0].access_token);
             }
-            this.router.navigate(['/garage/accueil']);
+            this.router.navigate([DataRoutingConst.ROUTE_VOITURES]);
           }
         },
         error: () => {

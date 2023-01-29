@@ -1,8 +1,7 @@
-export const DataWsConst = {
-  // authService
-  WS_LOGIN : '/authentification/login',
-  WS_INSCRIPTION : '/authentification/register',
-
-  // adminAuthService
-  WS_ADMIN_LOGIN : '/admin/authentification/login'
+export const DataRoutingConst = {
+  // auth
+  ROUTE_LOGIN : '/auth/login',
+  ROUTE_VOITURES : '/garage/voitures',
+  //admin_auth
+  ROUTE_ADMIN_LOGIN : '/admin/auth/login'
 }

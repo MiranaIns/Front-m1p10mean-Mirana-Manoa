@@ -6,13 +6,11 @@ import {AuthComponent} from "./layout/components/auth/auth.component";
 import {AuthGuard} from "./core/guard/auth-guard";
 import {InscriptionComponent} from "./modules/auth/inscription/inscription.component";
 import {AdminLoginComponent} from "./modules/auth/admin-login/admin-login.component";
-import {
-  UtilisateurTemplateComponent
-} from "./layout/components/utilisateur/utilisateur-template/utilisateur-template.component";
-
+import { UtilisateurTemplateComponent } from "./layout/components/utilisateur/utilisateur-template/utilisateur-template.component";
+import {DataRoutingConst} from "./data/constant/data-routing.const";
 
 const routes: Routes = [
-  { path: '',   redirectTo: '/auth/login', pathMatch: 'full' },
+  { path: '',   redirectTo: DataRoutingConst.ROUTE_LOGIN, pathMatch: 'full' },
   {
     path : 'auth',
     component : AuthComponent,
@@ -37,12 +35,12 @@ const routes: Routes = [
   {
     path : 'garage', component : UtilisateurTemplateComponent, canActivate : [AuthGuard],
     children : [
-    	{ path: 'accueil', component:TestComponent}
+    	{ path: 'voitures', component:TestComponent}
     ]
   },
   {
     path: '**',
-    redirectTo: '/auth/login',
+    redirectTo: DataRoutingConst.ROUTE_LOGIN,
     pathMatch: 'full'
   }
 ];

@@ -7,6 +7,7 @@ import {SnackBarComponent} from 'src/app/shared/components/snack-bar/snack-bar.c
 import { LocalStorageService } from 'src/app/shared/services/local-storage/local-storage.service';
 import { LocalStorageConst } from 'src/app/shared/constant/local-storage.const';
 import { Router } from '@angular/router';
+import {DataRoutingConst} from "../../../data/constant/data-routing.const";
 
 @Component({
   selector: 'app-login',
@@ -68,7 +69,7 @@ export class LoginComponent implements OnInit {
           else {
             // @ts-ignore
             this.localStorageService.setItem(LocalStorageConst.ACCESS_TOKEN,res.data[0].access_token);
-            this.router.navigate(['/garage/accueil']);
+            this.router.navigate([DataRoutingConst.ROUTE_VOITURES]);
           }
         },
         error: () => {
