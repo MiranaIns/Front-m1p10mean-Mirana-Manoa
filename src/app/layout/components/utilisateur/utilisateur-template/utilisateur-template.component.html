@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="../../../../backoffice/vendors/css/vendor.bundle.base.css">
   <!-- endinject -->
   <!-- Plugin css for this page -->
+  <link rel="stylesheet" href="../../../../backoffice/vendors/mdi/css/materialdesignicons.min.css">
   <link rel="stylesheet" href="../../../../backoffice/vendors/datatables.net-bs4/dataTables.bootstrap4.css">
   <link rel="stylesheet" href="../../../../backoffice/vendors/ti-icons/css/themify-icons.css">
   <link rel="stylesheet" type="text/css" href="../../../../backoffice/js/select.dataTables.min.css">
@@ -37,16 +38,10 @@
     <!-- partial:partials/_sidebar.html -->
     <nav class="sidebar sidebar-offcanvas" id="sidebar">
       <ul class="nav">
-        <li class="nav-item active">
-          <a class="nav-link" href="index.html">
-            <i class="icon-grid menu-icon"></i>
-            <span class="menu-title">Dashboard</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="pages/documentation/documentation.html">
-            <i class="icon-paper menu-icon"></i>
-            <span class="menu-title">Documentation</span>
+        <li *ngFor="let sidebar of sidebarData" class="nav-item" [ngClass]="{'active': sidebar.routerLink == currentPath}" [routerLink]="sidebar.routerLink">
+          <a class="nav-link">
+            <i class="{{sidebar.icon}}"></i>
+            <span class="menu-title" style="margin-left: 10px;">{{sidebar.label}}</span>
           </a>
         </li>
       </ul>
