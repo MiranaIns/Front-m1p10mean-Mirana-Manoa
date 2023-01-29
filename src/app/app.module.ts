@@ -14,6 +14,7 @@ import { InscriptionComponent } from './modules/auth/inscription/inscription.com
 import { AdminLoginComponent } from './modules/auth/admin-login/admin-login.component';
 import { UtilisateurTemplateComponent } from './layout/components/utilisateur/utilisateur-template/utilisateur-template.component';
 import { VoituresComponent } from './layout/components/utilisateur/voitures/voitures/voitures.component';
+import {DragDropModule} from "@angular/cdk/drag-drop";
 
 @NgModule({
   declarations: [
@@ -26,14 +27,15 @@ import { VoituresComponent } from './layout/components/utilisateur/voitures/voit
     UtilisateurTemplateComponent,
     VoituresComponent
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        ReactiveFormsModule,
-        HttpClientModule,
-        MatSnackBarModule,
-        BrowserAnimationsModule
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    MatSnackBarModule,
+    BrowserAnimationsModule,
+    DragDropModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })
