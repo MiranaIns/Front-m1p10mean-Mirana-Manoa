@@ -5,6 +5,7 @@ import {RatAuthGuardService} from "../services/rat-auth-guard/rat-auth-guard.ser
 import { LocalStorageService } from 'src/app/shared/services/local-storage/local-storage.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SnackBarComponent } from 'src/app/shared/components/snack-bar/snack-bar.component';
+import {DataRoutingConst} from "../../data/constant/data-routing.const";
 
 
 @Injectable({
@@ -32,7 +33,7 @@ export class RatAuthGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     if(!this.ratAuthGuardService.checkAuthorisation()){
-      this.router.navigate(['/admin/auth/login']);
+      this.router.navigate([DataRoutingConst.ROUTE_ADMIN_LOGIN]);
       this.openErrorSnackBar("Vous devez vous connecter pour accéder à cette page.");
       return false;
     }

@@ -7,6 +7,8 @@ import {LocalStorageService} from "../../../shared/services/local-storage/local-
 import {SnackBarComponent} from "../../../shared/components/snack-bar/snack-bar.component";
 import {HttpStatusConst} from "../../../shared/constant/http-status.const";
 import {LocalStorageConst} from "../../../shared/constant/local-storage.const";
+import {DataRoutingConst} from "../../../data/constant/data-routing.const";
+import {DataErrorConst} from "../../../data/constant/data-error.const";
 
 @Component({
   selector: 'app-inscription',
@@ -88,22 +90,22 @@ export class InscriptionComponent implements OnInit {
                 this.openErrorSnackBar("Vous avez déjà un compte. Veuillez vous connecter pour continuer.")
               }
               else {
-                this.openErrorSnackBar("Une erreur s'est produite !");
+                this.openErrorSnackBar(DataErrorConst.UNKNOWN_ERROR);
               }
             }
             else {
-              this.router.navigate(['/auth/login']);
+              this.router.navigate([DataRoutingConst.ROUTE_LOGIN]);
               this.openSuccessSnackBar('Votre compte a été créé avec succès. Connectez-vous pour continuer.');
             }
           },
           error: () => {
-            this.openErrorSnackBar("Une erreur s'est produite !");
+            this.openErrorSnackBar(DataErrorConst.UNKNOWN_ERROR);
           },
           complete: () => {}
         });
       }
     } catch (error) {
-      this.openErrorSnackBar("Une erreur s'est produite !");
+      this.openErrorSnackBar(DataErrorConst.UNKNOWN_ERROR);
     }
   }
 }

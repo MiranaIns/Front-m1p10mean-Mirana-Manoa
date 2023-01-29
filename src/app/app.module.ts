@@ -8,30 +8,34 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './modules/auth/login/login.component';
-import { TestComponent } from './modules/test/test.component';
 import { AuthComponent } from './layout/components/auth/auth.component';
 import { SnackBarComponent } from './shared/components/snack-bar/snack-bar.component';
 import { InscriptionComponent } from './modules/auth/inscription/inscription.component';
 import { AdminLoginComponent } from './modules/auth/admin-login/admin-login.component';
+import { UtilisateurTemplateComponent } from './layout/components/utilisateur/utilisateur-template/utilisateur-template.component';
+import { VoituresComponent } from './layout/components/utilisateur/voitures/voitures.component';
+import {DragDropModule} from "@angular/cdk/drag-drop";
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    TestComponent,
     AuthComponent,
     SnackBarComponent,
     InscriptionComponent,
-    AdminLoginComponent
+    AdminLoginComponent,
+    UtilisateurTemplateComponent,
+    VoituresComponent
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        ReactiveFormsModule,
-        HttpClientModule,
-        MatSnackBarModule,
-        BrowserAnimationsModule
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    MatSnackBarModule,
+    BrowserAnimationsModule,
+    DragDropModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })
