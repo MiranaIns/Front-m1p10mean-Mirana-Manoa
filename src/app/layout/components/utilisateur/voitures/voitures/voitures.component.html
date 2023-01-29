@@ -1,16 +1,16 @@
 <h1>Liste des voitures</h1>
-
+<!--
 <div class="example-container">
   <h2>Vos voitures</h2>
 
   <div
     cdkDropList
     #todoList="cdkDropList"
-    [cdkDropListData]="todo"
-    [cdkDropListConnectedTo]="[doneList]"
+    [cdkDropListData]="voitures"
+    [cdkDropListConnectedTo]="[doneList]" #do not forget on drag and drop
     class="example-list"
     (cdkDropListDropped)="drop($event)">
-    <div class="example-box" *ngFor="let item of todo" cdkDrag>{{item}}</div>
+    <div class="example-box" *ngFor="let item of voitures" cdkDrag>{{item.voiture_marque}}</div>
   </div>
 </div>
 
@@ -27,5 +27,20 @@
     <div class="example-box" *ngFor="let item of done" cdkDrag>{{item}}</div>
   </div>
 </div>
+-->
+
+<div class="example-container">
+  <h2>Vos voitures</h2>
+
+  <div
+    cdkDropList
+    #todoList="cdkDropList"
+    [cdkDropListData]="voitures"
+    class="example-list"
+    (cdkDropListDropped)="drop($event)">
+    <div class="example-box" *ngFor="let item of voitures" cdkDrag>{{item.voiture_marque}}</div>
+  </div>
+</div>
+
 
 

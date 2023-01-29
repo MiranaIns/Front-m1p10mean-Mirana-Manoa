@@ -7,6 +7,7 @@ import {DataRoutingConst} from "../../../../../data/constant/data-routing.const"
 import {SnackBarComponent} from "../../../../../shared/components/snack-bar/snack-bar.component";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {DataErrorConst} from "../../../../../data/constant/data-error.const";
+import { VoitureInterface} from "../../../../../data/interfaces/voiture.interface";
 
 @Component({
   selector: 'app-voitures',
@@ -14,7 +15,7 @@ import {DataErrorConst} from "../../../../../data/constant/data-error.const";
   styleUrls: ['./voitures.component.css']
 })
 export class VoituresComponent implements OnInit {
-  voitures = []
+  voitures : VoitureInterface[] = []
 
   constructor(
     private _snackBar: MatSnackBar,
@@ -67,16 +68,23 @@ export class VoituresComponent implements OnInit {
 
   done = ['Get up', 'Brush teeth', 'Take a shower', 'Check e-mail', 'Walk dog'];
 
-  drop(event: CdkDragDrop<string[]>) {
+  drop(event: CdkDragDrop<any, any>) {
+    // @ts-ignore
     if (event.previousContainer === event.container) {
+      // @ts-ignore
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
-      transferArrayItem(
-        event.previousContainer.data,
-        event.container.data,
-        event.previousIndex,
-        event.currentIndex,
-      );
+      if(event!=undefined) {
+        transferArrayItem(
+          event.previousContainer.data,
+          event.container.data,
+          event.previousIndex,
+          event.currentIndex,
+        );
+      }
+      else {
+        this.openErrorSnackBar(DataErrorConst.UNKNOWN_ERROR);
+      }
     }
   }
 }
