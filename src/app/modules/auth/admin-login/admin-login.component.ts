@@ -54,10 +54,6 @@ export class AdminLoginComponent implements OnInit {
 
   }
 
-  changingUtilisateurType() {
-    console.log()
-  }
-
   openErrorSnackBar(errorMessage: String) {
     this._snackBar.openFromComponent(SnackBarComponent, {
       data : {

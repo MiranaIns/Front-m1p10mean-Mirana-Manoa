@@ -11,13 +11,24 @@ import {LocalStorageConst} from "../../constant/local-storage.const";
 export class HttpRequestService {
   private authorizationToken: string = '-'
   constructor(private http:HttpClient,private localStorageService: LocalStorageService) {
-    this.setAuthorizationTokenValue();
+    this.setAuthorizationTokenValue(null);
   }
-  protected setAuthorizationTokenValue() : void {
-    this.authorizationToken = 'Bearer ' + this.localStorageService.getItem(LocalStorageConst.ACCESS_TOKEN);
+
+  protected setAuthorizationTokenValue(authorization: any) : void {
+    if(authorization == "USER") {
+      console.log("ato");
+      this.authorizationToken = 'Bearer ' + this.localStorageService.getItem(LocalStorageConst.ACCESS_TOKEN);
+    }
+    else if(authorization == "RAT") {
+      this.authorizationToken = 'Bearer ' + this.localStorageService.getItem(LocalStorageConst.ACCESS_TOKEN_RAT);
+    }
+    else if(authorization == "RFI") {
+      this.authorizationToken = 'Bearer ' + this.localStorageService.getItem(LocalStorageConst.ACCESS_TOKEN_RFI);
+    }
   }
-  protected getOptions(options: any = {}) : any {
-  this.setAuthorizationTokenValue();
+
+  protected getOptions(authorization: any, options: any = {}) : any {
+  this.setAuthorizationTokenValue(authorization);
     let requestHeaders: HttpHeaders;
     var allowHeaders = '*';
     var contentType = 'application/json';
@@ -44,55 +55,62 @@ export class HttpRequestService {
   }
 
   public post<T> (
+    authorization: any,
     url: string,
     body: any,
     options: any = {}
   ) : Observable<any> {
-    return this.http.post<T>(url, body, this.getOptions(options));
+    return this.http.post<T>(url, body, this.getOptions(authorization, options));
   }
 
   public get<T> (
+    authorization: any,
     url: string,
     options: any = {}
   ) : Observable<any> {
-    return this.http.get<T>(url, this.getOptions(options));
+    return this.http.get<T>(url, this.getOptions(authorization, options));
   }
 
   public put<T> (
+    authorization: any,
     url: string,
     body: any,
     options: any = {}
   )  : Observable<any> {
-    return this.http.put<T>(url, body, this.getOptions(options));
+    return this.http.put<T>(url, body, this.getOptions(authorization, options));
   }
 
   public delete<T> (
+    authorization: any,
     url: string,
     options: any = {}
   )  : Observable<any> {
-    return this.http.delete<T>(url, this.getOptions(options));
+    return this.http.delete<T>(url, this.getOptions(authorization, options));
   }
 
   public patch<T> (
+    authorization: any,
     url: string,
     body: any,
     options: any = {}
   )  : Observable<any> {
-    return this.http.patch<T>(url, body, this.getOptions(options));
+    return this.http.patch<T>(url, body, this.getOptions(authorization, options));
   }
 
   public head<T> (
+    authorization: any,
     url: string,
     options: any = {}
   )  : Observable<any> {
-    return this.http.head<T>(url, this.getOptions(options));
+    return this.http.head<T>(url, this.getOptions(authorization, options));
   }
 
   public options<T> (
+    authorization: any,
     url: string,
     options: any = {}
   )  : Observable<any> {
-    return this.http.options<T>(url, this.getOptions(options));
+    return this.http.options<T>(url, this.getOptions(authorization, options));
   }
 
 }

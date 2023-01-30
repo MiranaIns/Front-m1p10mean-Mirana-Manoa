@@ -12,6 +12,6 @@ export class AdminAuthService {
   constructor(private httpRequestService: HttpRequestService) { }
 
   public login(user:any): Observable<JsonModel> {
-    return this.httpRequestService.post(environment.apiUrl + DataWsConst.WS_ADMIN_LOGIN,user);
+    return this.httpRequestService.post(null, environment.apiUrl + DataWsConst.WS_ADMIN_LOGIN,user);
   }
 }

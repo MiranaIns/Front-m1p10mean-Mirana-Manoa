@@ -18,15 +18,15 @@ export class VoituresService {
   }
 
   public getAllVoitures(): Observable<JsonModel> {
-    return this.httpRequestService.get(environment.apiUrl + DataWsConst.WS_VOITURES + "?etat=false");
+    return this.httpRequestService.get("USER", environment.apiUrl + DataWsConst.WS_VOITURES + "?etat=false");
   }
 
   public getAllVoituresInGarage(): Observable<JsonModel> {
-    return this.httpRequestService.get(environment.apiUrl + DataWsConst.WS_VOITURES + "?etat=true");
+    return this.httpRequestService.get("USER", environment.apiUrl + DataWsConst.WS_VOITURES + "?etat=true");
   }
 
   public addVoiture(voiture: any): Observable<JsonModel> {
-    return this.httpRequestService.post(environment.apiUrl + DataWsConst.WS_VOITURES, voiture)
+    return this.httpRequestService.post("USER", environment.apiUrl + DataWsConst.WS_VOITURES, voiture)
       .pipe(
         tap(() => {
           this._refreshNeeded.next();
