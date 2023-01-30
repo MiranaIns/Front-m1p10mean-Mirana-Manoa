@@ -4,6 +4,11 @@ import {HttpStatusConst} from "../../../shared/constant/http-status.const";
 import {DataErrorConst} from "../../../data/constant/data-error.const";
 import {SnackBarComponent} from "../../../shared/components/snack-bar/snack-bar.component";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {
+  AjouterVoiturePopUpComponent
+} from "../../../shared/components/ajouter-voiture-pop-up/ajouter-voiture-pop-up.component";
+import {MatDialog} from "@angular/material/dialog";
+import {FaireDevisPopUpComponent} from "../../../shared/components/faire-devis-pop-up/faire-devis-pop-up.component";
 
 @Component({
   selector: 'app-depots',
@@ -19,6 +24,7 @@ export class DepotsComponent implements OnInit {
   voitureDepot: any[] = [];
 
   constructor(
+    private matDialog: MatDialog,
     private _snackBar: MatSnackBar,
     private voitureGarageService : VoitureGarageService
   ) { }
@@ -43,7 +49,6 @@ export class DepotsComponent implements OnInit {
   getVoituresGarageDépot() {
     this.voitureGarageService.getVoituresGarageDépot().subscribe({
       next: res => {
-        console.log(res);
         if(res.status != HttpStatusConst.SUCCESS ){
           this.openErrorSnackBar(DataErrorConst.UNKNOWN_ERROR);
         }
@@ -53,7 +58,6 @@ export class DepotsComponent implements OnInit {
             try {
               // @ts-ignore
               this.voitureDepot = data.voitures;
-              console.log(this.voitureDepot);
             }
             catch (e) {
               console.log(e);
@@ -72,7 +76,10 @@ export class DepotsComponent implements OnInit {
     })
   }
 
-  showPopAjouterDevis(voiture_garage_uuid: string) {
-    console.log(voiture_garage_uuid);
+  showPopAjouterDevis(voiture_garage: any) {
+    const dialogRef = this.matDialog.open(FaireDevisPopUpComponent, {
+      data: {voiture_garage: voiture_garage },
+      panelClass: "custom-container",
+      autoFocus: false });
   }
 }

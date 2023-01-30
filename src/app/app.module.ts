@@ -20,6 +20,8 @@ import { AjouterVoiturePopUpComponent } from './shared/components/ajouter-voitur
 import {MatDialogModule} from "@angular/material/dialog";
 import { ResponsableAtelierTemplateComponent } from './layout/components/responsable-atelier/responsable-atelier-template/responsable-atelier-template.component';
 import { DepotsComponent } from './modules/responsable-atelier/depots/depots.component';
+import { FaireDevisPopUpComponent } from "./shared/components/faire-devis-pop-up/faire-devis-pop-up.component";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +34,8 @@ import { DepotsComponent } from './modules/responsable-atelier/depots/depots.com
     VoituresComponent,
     AjouterVoiturePopUpComponent,
     ResponsableAtelierTemplateComponent,
-    DepotsComponent
+    DepotsComponent,
+    FaireDevisPopUpComponent
   ],
   imports: [
     BrowserModule,
