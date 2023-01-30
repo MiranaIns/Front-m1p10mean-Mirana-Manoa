@@ -20,6 +20,7 @@ import {
 })
 export class VoituresComponent implements OnInit {
   voitures : VoitureInterface[] = []
+  garage : VoitureInterface[] = [];
 
   constructor(
     private matDialog: MatDialog,
@@ -75,10 +76,6 @@ export class VoituresComponent implements OnInit {
       panelClass : 'error'
     });
   }
-
-  todo = ['Get to work', 'Pick up groceries', 'Go home', 'Fall asleep'];
-
-  done = ['Get up', 'Brush teeth', 'Take a shower', 'Check e-mail', 'Walk dog'];
 
   drop(event: CdkDragDrop<any, any>) {
     // @ts-ignore
