@@ -22,23 +22,27 @@
                 <thead>
                   <tr>
                     <th></th>
-                    <th>User</th>
-                    <th>Product</th>
-                    <th>Sale</th>
-                    <th>Status</th>
+                    <th>Nom</th>
+                    <th>Prix</th>
+                    <th>Pièces</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
+                  <tr *ngFor="let reparation of reparations">
                     <td>
                       <button mat-mini-fab color="primary" (click)="test()">
                         <mat-icon>add</mat-icon>
                       </button>
                     </td>
-                    <td>Jacob</td>
-                    <td>Photoshop</td>
-                    <td class="text-danger"> 28.76% <i class="ti-arrow-down"></i></td>
-                    <td><label class="badge badge-danger">Pending</label></td>
+                    <td>{{reparation.reparation_intitule}}</td>
+                    <td>{{reparation.reparation_prix}} Ar</td>
+                    <td>
+                      <ul>
+                        <li *ngFor="let piece of reparation.reparation_piece">
+                          {{piece.details.piece_nom}} ({{piece.quantite}})
+                        </li>
+                      </ul>
+                    </td>
                   </tr>
                 </tbody>
               </table>
