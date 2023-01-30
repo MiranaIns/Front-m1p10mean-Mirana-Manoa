@@ -10,9 +10,9 @@
   </div>
   <div
     cdkDropList
-    #liste_voitures="cdkDropList"
+    id="liste_voitures"
     [cdkDropListData]="voitures"
-    [cdkDropListConnectedTo]="[doneList]"
+    cdkDropListConnectedTo="liste_garage"
     class="example-list"
     (cdkDropListDropped)="drop($event)">
     <div class="example-box" *ngFor="let voiture of voitures" cdkDrag>
@@ -31,9 +31,9 @@
 
   <div
     cdkDropList
-    #doneList="cdkDropList"
+    id="liste_garage"
     [cdkDropListData]="garage"
-    [cdkDropListConnectedTo]="[liste_voitures]"
+    cdkDropListConnectedTo="liste_voitures"
     class="example-list"
     (cdkDropListDropped)="drop($event)">
     <div class="example-box" *ngFor="let voiture of garage" cdkDrag>

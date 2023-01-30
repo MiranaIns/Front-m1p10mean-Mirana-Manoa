@@ -21,6 +21,10 @@ export class VoituresService {
     return this.httpRequestService.get(environment.apiUrl + DataWsConst.WS_VOITURES + "?etat=false");
   }
 
+  public getAllVoituresInGarage(): Observable<JsonModel> {
+    return this.httpRequestService.get(environment.apiUrl + DataWsConst.WS_VOITURES + "?etat=true");
+  }
+
   public addVoiture(voiture: any): Observable<JsonModel> {
     return this.httpRequestService.post(environment.apiUrl + DataWsConst.WS_VOITURES, voiture)
       .pipe(
