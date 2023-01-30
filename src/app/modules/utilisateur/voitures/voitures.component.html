@@ -1,7 +1,7 @@
-<h1>Liste des voitures</h1>
+<h3>Liste des voitures</h3>
 
 <div class="example-container" style="width: 30%;">
-  <h2>Vos voitures</h2>
+  <h4>Vos voitures</h4>
 
   <div class="example-button-container">
     <button mat-mini-fab color="primary" (click)="showAddVoiturePopUp()">
@@ -17,7 +17,7 @@
     (cdkDropListDropped)="drop($event)">
     <div class="example-box" *ngFor="let voiture of voitures" cdkDrag>
       <div class="item-container">
-        <h3><strong>{{voiture.voiture_immatriculation}}</strong></h3>
+        <h5><strong>{{voiture.voiture_immatriculation}}</strong></h5>
         <p><strong>Marque : </strong>{{voiture.voiture_marque}}</p>
         <p><strong>Modele : </strong>{{voiture.voiture_modele}}</p>
         <p><strong>Couleur : </strong> <i class="" [style.background-color]="voiture.voiture_couleur" style="border: solid 1px; padding: 0 9px 0 10px; margin-left: 5px; border-radius: 20px;"></i></p>
@@ -27,7 +27,7 @@
 </div>
 
 <div class="example-container" style="width: 50%;">
-  <h2>Voitures au garage</h2>
+  <h4>Voitures au garage</h4>
 
   <div
     cdkDropList
@@ -38,7 +38,7 @@
     (cdkDropListDropped)="drop($event)">
     <div class="example-box" *ngFor="let voiture of garage" cdkDrag>
       <div class="item-container">
-        <h3><strong>{{voiture.voiture_immatriculation}}</strong></h3>
+        <h5><strong>{{voiture.voiture_immatriculation}}</strong></h5>
         <p><strong>Marque : </strong>{{voiture.voiture_marque}}</p>
         <p><strong>Modele : </strong>{{voiture.voiture_modele}}</p>
         <p><strong>Couleur : </strong> <i class="" [style.background-color]="voiture.voiture_couleur" style="border: solid 1px; padding: 0 9px 0 10px; margin-left: 5px; border-radius: 20px;"></i></p>
