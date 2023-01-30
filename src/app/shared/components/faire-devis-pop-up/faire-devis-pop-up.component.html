@@ -4,79 +4,92 @@
   </button>
 </div>
 <div class="faire-devis-pop-up">
-    <h2>Faire un devis</h2>
-    <hr>
-    <h3>Voiture informations :</h3>
-    <p><strong>Immatriculation : </strong> {{voiture_detail.voiture_immatriculation}}</p>
-    <p><strong>Marque : </strong> {{voiture_detail.voiture_marque}}</p>
-    <p><strong>Modele : </strong> {{voiture_detail.voiture_modele}}</p>
-    <p><strong>Couleur : </strong> <i class="" [style.background-color]="voiture_detail.voiture_couleur" style="border: solid 1px; padding: 0 9px 0 10px; margin-left: 5px; border-radius: 20px;"></i></p>
-    <hr>
-    <div class="row">
-      <div class="col-lg-5 grid-margin stretch-card">
-        <div class="card">
-          <div class="card-body">
-            <h4 class="card-title">Liste des réparations</h4>
-            <div class="table-responsive">
-              <table class="table table-hover">
-                <thead>
-                  <tr>
-                    <th></th>
-                    <th>Nom</th>
-                    <th>Prix</th>
-                    <th>Pièces</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let reparation of reparations">
-                    <td>
-                      <button mat-mini-fab color="primary" (click)="test()">
-                        <mat-icon>add</mat-icon>
-                      </button>
-                    </td>
-                    <td>{{reparation.reparation_intitule}}</td>
-                    <td>{{reparation.reparation_prix}} Ar</td>
-                    <td>
-                      <ul>
-                        <li *ngFor="let piece of reparation.reparation_piece">
-                          {{piece.details.piece_nom}} ({{piece.quantite}})
-                        </li>
-                      </ul>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+  <h2>Faire un devis</h2>
+  <hr>
+  <h3>Voiture informations :</h3>
+  <p><strong>Immatriculation : </strong> {{voiture_detail.voiture_immatriculation}}</p>
+  <p><strong>Marque : </strong> {{voiture_detail.voiture_marque}}</p>
+  <p><strong>Modele : </strong> {{voiture_detail.voiture_modele}}</p>
+  <p><strong>Couleur : </strong> <i class="" [style.background-color]="voiture_detail.voiture_couleur" style="border: solid 1px; padding: 0 9px 0 10px; margin-left: 5px; border-radius: 20px;"></i></p>
+  <hr>
+  <div class="row">
+    <div class="col-lg-5 grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Liste des réparations</h4>
+          <div class="table-responsive">
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>Nom</th>
+                  <th>Prix</th>
+                  <th>Pièces</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let reparation of reparations">
+                  <td>
+                    <button mat-mini-fab color="primary" (click)="ajouterReparation(reparation)">
+                      <mat-icon>add</mat-icon>
+                    </button>
+                  </td>
+                  <td>{{reparation.reparation_intitule}}</td>
+                  <td>{{reparation.reparation_prix}} Ar</td>
+                  <td>
+                    <ul>
+                      <li *ngFor="let piece of reparation.reparation_piece">
+                        {{piece.details.piece_nom}} ({{piece.quantite}})
+                      </li>
+                    </ul>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
-      <div class="col-lg-7 grid-margin stretch-card">
-        <div class="card">
-          <div class="card-body">
-            <h4 class="card-title">Devis</h4>
-            <div class="table-responsive">
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th>Profile</th>
-                    <th>VatNo.</th>
-                    <th>Created</th>
-                    <th>Status</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Jacob</td>
-                    <td>53275531</td>
-                    <td>12 May 2017</td>
-                    <td><label class="badge badge-danger">Pending</label></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+    </div>
+    <div class="col-lg-7 grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Devis</h4>
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+              <tr>
+                <th></th>
+                <th>Nom</th>
+                <th>Pièces</th>
+                <th>Prix</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let reparation of reparations_devis;  let i = index;">
+                <td>
+                  <button mat-mini-fab style="background-color: red;" (click)="deleteReparation(i)">
+                    <mat-icon>delete</mat-icon>
+                  </button>
+                </td>
+                <td>{{reparation.reparation_intitule}}</td>
+                <td>
+                  <ul>
+                    <li *ngFor="let piece of reparation.reparation_piece">
+                      {{piece.details.piece_nom}} ({{piece.quantite}})
+                    </li>
+                  </ul>
+                </td>
+                <td>{{reparation.reparation_prix}} Ar</td>
+              </tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
     </div>
   </div>
+  <div style="float: right; margin-right: 50px;">
+    <h3>Total : {{prix_devis}} Ar</h3>
+  </div>
+</div>
 

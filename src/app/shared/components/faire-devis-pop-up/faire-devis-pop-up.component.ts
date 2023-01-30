@@ -19,6 +19,8 @@ import {VoitureInterface} from "../../../data/interfaces/voiture.interface";
 export class FaireDevisPopUpComponent implements OnInit {
   voiture_detail: any;
   reparations : any[] = []
+  reparations_devis : any[] = []
+  prix_devis : number = 0;
 
   constructor(
     private reparationService: ReparationService,
@@ -78,7 +80,13 @@ export class FaireDevisPopUpComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  test() {
-    console.log("HhHhHahahahaha")
+  ajouterReparation(reparation: any) {
+    this.reparations_devis.push(reparation);
+    this.prix_devis += reparation.reparation_prix;
+  }
+
+  deleteReparation(i : number) {
+    this.prix_devis -= this.reparations_devis[i].reparation_prix;
+    this.reparations_devis.splice(i, 1);
   }
 }
