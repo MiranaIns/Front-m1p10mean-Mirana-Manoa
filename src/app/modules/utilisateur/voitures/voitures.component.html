@@ -1,0 +1,59 @@
+<h3>Liste des voitures</h3>
+
+<div class="example-container" style="width: 30%;">
+  <h4>Vos voitures</h4>
+
+  <div class="example-button-container">
+    <button mat-mini-fab color="primary" (click)="showAddVoiturePopUp()">
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+  <div
+    cdkDropList
+    id="liste_voitures"
+    [cdkDropListData]="voitures"
+    cdkDropListConnectedTo="liste_garage"
+    class="example-list"
+    (cdkDropListDropped)="drop($event)">
+    <div class="example-box" *ngFor="let voiture of voitures" cdkDrag>
+      <div class="item-container">
+        <h5><strong>{{voiture.voiture_immatriculation}}</strong></h5>
+        <p><strong>Marque : </strong>{{voiture.voiture_marque}}</p>
+        <p><strong>Modele : </strong>{{voiture.voiture_modele}}</p>
+        <p><strong>Couleur : </strong> <i class="" [style.background-color]="voiture.voiture_couleur" style="border: solid 1px; padding: 0 9px 0 10px; margin-left: 5px; border-radius: 20px;"></i></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="example-container" style="width: 50%;">
+  <h4>Voitures au garage</h4>
+
+  <div
+    cdkDropList
+    id="liste_garage"
+    [cdkDropListData]="garage"
+    cdkDropListConnectedTo="liste_voitures"
+    class="example-list"
+    (cdkDropListDropped)="drop($event)">
+    <div class="example-box" *ngFor="let voiture of garage" cdkDrag>
+      <div class="item-container">
+        <h5><strong>{{voiture.voiture_details.voiture_immatriculation}}</strong></h5>
+        <p><strong>Marque : </strong>{{voiture.voiture_details.voiture_marque}}</p>
+        <p><strong>Modele : </strong>{{voiture.voiture_details.voiture_modele}}</p>
+        <p><strong>Couleur : </strong> <i class="" [style.background-color]="voiture.voiture_details.voiture_couleur" style="border: solid 1px; padding: 0 9px 0 10px; margin-left: 5px; border-radius: 20px;"></i></p>
+      </div>
+      <div *ngIf="voiture.voiture_garage_avancement === 'Dépot'" style="float: right">
+        <label class="badge badge-danger" style="margin-right: 10px;">En attente de devis</label>
+      </div>
+      <div *ngIf="voiture.voiture_garage_avancement === 'Devis'" style="float: right">
+        <label class="badge badge-warning" style="margin-right: 10px;">Devis en attente de validation</label>
+        <button type="submit" class="btn btn-primary mr-2 close-screen" (click)="showVoirDevisPopUp(voiture)">Voir devis</button>
+      </div>
+      <div *ngIf="voiture.voiture_garage_avancement === 'reparation'" style="float: right">
+        <label class="badge badge-info" style="margin-right: 10px;">Réparation</label>
+      </div>
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,10 @@
+.voir-devis-pop-up {
+  padding: 15px;
+  min-width: 1000px;
+  max-width: 1000px;
+  max-height: 600px;
+}
+
+.close-screen {
+  float : right;
+}
