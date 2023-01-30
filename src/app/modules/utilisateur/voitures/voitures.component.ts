@@ -1,30 +1,40 @@
 import { Component, OnInit } from '@angular/core';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
-import {VoituresService} from "../../../../data/services/voitures/voitures.service";
-import {HttpStatusConst} from "../../../../shared/constant/http-status.const";
-import {LocalStorageConst} from "../../../../shared/constant/local-storage.const";
-import {DataRoutingConst} from "../../../../data/constant/data-routing.const";
-import {SnackBarComponent} from "../../../../shared/components/snack-bar/snack-bar.component";
+import {VoituresService} from "../../../data/services/voitures/voitures.service";
+import {HttpStatusConst} from "../../../shared/constant/http-status.const";
+import {SnackBarComponent} from "../../../shared/components/snack-bar/snack-bar.component";
 import {MatSnackBar} from "@angular/material/snack-bar";
-import {DataErrorConst} from "../../../../data/constant/data-error.const";
-import { VoitureInterface} from "../../../../data/interfaces/voiture.interface";
+import {DataErrorConst} from "../../../data/constant/data-error.const";
+import { VoitureInterface} from "../../../data/interfaces/voiture.interface";
+import {MatDialog} from "@angular/material/dialog";
+import {
+  AjouterVoiturePopUpComponent
+} from "../../../shared/components/ajouter-voiture-pop-up/ajouter-voiture-pop-up.component";
 
 @Component({
   selector: 'app-voitures',
   templateUrl: './voitures.component.html',
   styleUrls: ['./voitures.component.css',
-    "../../../../backoffice/vendors/mdi/css/materialdesignicons.min.css"
+    "../../../template/vendors/mdi/css/materialdesignicons.min.css"
   ]
 })
 export class VoituresComponent implements OnInit {
   voitures : VoitureInterface[] = []
 
   constructor(
+    private matDialog: MatDialog,
     private _snackBar: MatSnackBar,
     private voituresService: VoituresService
   ) {}
 
   ngOnInit() {
+    this.voituresService.refreshNeeded.subscribe(() => {
+      this.getAllVoitures();
+    });
+    this.getAllVoitures();
+  }
+
+  private getAllVoitures() {
     this.voituresService.getAllVoitures().subscribe({
       next: res => {
         if(res.status != HttpStatusConst.SUCCESS ){
@@ -47,10 +57,10 @@ export class VoituresComponent implements OnInit {
           }
         }
       },
-        error: () => {
+      error: () => {
         this.openErrorSnackBar(DataErrorConst.UNKNOWN_ERROR);
       },
-        complete: () => {}
+      complete: () => {}
     })
   }
 
@@ -88,5 +98,11 @@ export class VoituresComponent implements OnInit {
         this.openErrorSnackBar(DataErrorConst.UNKNOWN_ERROR);
       }
     }
+  }
+
+  showAddVoiturePopUp() {
+    const dialogRef = this.matDialog.open(AjouterVoiturePopUpComponent, {
+      panelClass: "custom-container",
+      autoFocus: false });
   }
 }

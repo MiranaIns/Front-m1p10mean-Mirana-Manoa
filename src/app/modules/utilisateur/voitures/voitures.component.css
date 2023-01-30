@@ -1,16 +1,19 @@
 .example-container {
   width: 400px;
   max-width: 100%;
-  margin: 0 25px 25px 0;
+  margin: 0 50px 50px 0;
   display: inline-block;
   vertical-align: top;
+  background-color: #faffff;
+  border-radius: 10px;
+  padding: 30px;
 }
 
 .example-list {
   border: solid 1px #ccc;
   min-height: 60px;
   background: white;
-  border-radius: 4px;
+  border-radius: 10px;
   overflow: hidden;
   display: block;
 }
@@ -55,4 +58,8 @@
 
 .item-container {
   margin: 0 30px 0 30px;
+}
+
+.example-button-container {
+  margin: 0 0 20px 0;
 }

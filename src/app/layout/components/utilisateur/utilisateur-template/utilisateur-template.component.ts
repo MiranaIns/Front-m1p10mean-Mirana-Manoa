@@ -7,14 +7,14 @@ import { Location } from '@angular/common';
   templateUrl: './utilisateur-template.component.html',
   styleUrls: [
     './utilisateur-template.component.css',
-    "../../../../backoffice/vendors/feather/feather.css",
-    "../../../../backoffice/vendors/ti-icons/css/themify-icons.css",
-    "../../../../backoffice/vendors/css/vendor.bundle.base.css",
-    "../../../../backoffice/vendors/datatables.net-bs4/dataTables.bootstrap4.css",
-    "../../../../backoffice/vendors/ti-icons/css/themify-icons.css",
-    "../../../../backoffice/js/select.dataTables.min.css",
-    "../../../../backoffice/css/vertical-layout-light/style.css",
-    "../../../../backoffice/vendors/mdi/css/materialdesignicons.min.css"
+    "../../../../template/vendors/feather/feather.css",
+    "../../../../template/vendors/ti-icons/css/themify-icons.css",
+    "../../../../template/vendors/css/vendor.bundle.base.css",
+    "../../../../template/vendors/datatables.net-bs4/dataTables.bootstrap4.css",
+    "../../../../template/vendors/ti-icons/css/themify-icons.css",
+    "../../../../template/js/select.dataTables.min.css",
+    "../../../../template/css/vertical-layout-light/style.css",
+    "../../../../template/vendors/mdi/css/materialdesignicons.min.css"
   ]
 })
 export class UtilisateurTemplateComponent implements OnInit {
