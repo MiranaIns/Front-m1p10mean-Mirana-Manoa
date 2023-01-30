@@ -9,6 +9,7 @@ import {
 } from "../../../shared/components/ajouter-voiture-pop-up/ajouter-voiture-pop-up.component";
 import {MatDialog} from "@angular/material/dialog";
 import {FaireDevisPopUpComponent} from "../../../shared/components/faire-devis-pop-up/faire-devis-pop-up.component";
+import {VoituresService} from "../../../data/services/voitures/voitures.service";
 
 @Component({
   selector: 'app-depots',
@@ -24,12 +25,16 @@ export class DepotsComponent implements OnInit {
   voitureDepot: any[] = [];
 
   constructor(
+    private voituresService : VoituresService,
     private matDialog: MatDialog,
     private _snackBar: MatSnackBar,
     private voitureGarageService : VoitureGarageService
   ) { }
 
   ngOnInit(): void {
+    this.voituresService.refreshNeeded.subscribe(() => {
+      this.getVoituresGarageDépot();
+    });
     this.getVoituresGarageDépot();
   }
 

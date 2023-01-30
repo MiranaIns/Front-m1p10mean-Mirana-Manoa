@@ -33,4 +33,13 @@ export class VoituresService {
         })
       );
   }
+
+  public insertDevis(devis: any) {
+    return this.httpRequestService.post("RAT", environment.apiUrl + DataWsConst.WS_VOITURES_ADD_DEVIS, devis)
+    .pipe(
+      tap(() => {
+        this._refreshNeeded.next();
+      })
+    );
+  }
 }

@@ -88,9 +88,15 @@
       </div>
     </div>
   </div>
-  <div style="float: right; margin-right: 50px; min-height: 150px">
+  <div style="float: right; margin-right: 50px; min-height: 250px">
     <h3>Total : {{prix_devis}} Ar</h3>
-    <button type="submit" class="btn btn-primary mr-2 close-screen">Valider le devis</button>
+      <form class="forms-sample" [formGroup] = "faireDevisForm">
+        <div class="form-group">
+          <label for="Description">Description</label>
+          <textarea type="text" class="form-control" id="Description" formControlName="description"  placeholder="Description"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary mr-2 close-screen" (click)="validerDevis()">Valider le devis</button>
+      </form>
   </div>
 </div>
 

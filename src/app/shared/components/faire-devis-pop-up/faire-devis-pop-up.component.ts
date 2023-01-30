@@ -6,6 +6,8 @@ import {SnackBarComponent} from "../snack-bar/snack-bar.component";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {ReparationService} from "../../../data/services/reparation/reparation.service";
 import {VoitureInterface} from "../../../data/interfaces/voiture.interface";
+import {FormControl, FormGroup} from "@angular/forms";
+import {VoituresService} from "../../../data/services/voitures/voitures.service";
 
 @Component({
   selector: 'app-faire-devis-pop-up',
@@ -21,12 +23,18 @@ export class FaireDevisPopUpComponent implements OnInit {
   reparations : any[] = []
   reparations_devis : any[] = []
   prix_devis : number = 0;
+  faireDevisForm: FormGroup;
 
   constructor(
+    private voituresService : VoituresService,
     private reparationService: ReparationService,
     private _snackBar: MatSnackBar,
     public dialogRef: MatDialogRef<FaireDevisPopUpComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any) { }
+    @Inject(MAT_DIALOG_DATA) public data: any) {
+    this.faireDevisForm = new FormGroup({
+      description: new FormControl()
+    });
+  }
 
   ngOnInit(): void {
     this.voiture_detail = this.data.voiture_garage.voiture_details;
@@ -88,5 +96,47 @@ export class FaireDevisPopUpComponent implements OnInit {
   deleteReparation(i : number) {
     this.prix_devis -= this.reparations_devis[i].reparation_prix;
     this.reparations_devis.splice(i, 1);
+  }
+
+  validerDevis() {
+    try {
+      if(this.prix_devis > 0) {
+        let devis = {
+          voiture_garage_uuid: this.data.voiture_garage.voiture_garage_uuid,
+          voiture_devis_description: this.faireDevisForm.value.description,
+          voiture_devis_reparations: [],
+          voiture_devis_prix: this.prix_devis
+        }
+        this.reparations_devis.forEach(reparation => {
+          let rep = {
+            reparation_uuid:reparation.reparation_uuid,
+            voiture_reparartion_prix: reparation.reparation_prix,
+            voiture_reparation_prix_piece: 0,
+            voiture_reparation_totale: reparation.reparation_prix
+          }
+          // @ts-ignore
+          devis.voiture_devis_reparations.push(rep);
+        });
+        this.voituresService.insertDevis(devis).subscribe({
+          next: res => {
+            if(res.status != HttpStatusConst.CREATED ){
+              this.openErrorSnackBar(DataErrorConst.UNKNOWN_ERROR);
+            }
+            else {
+              this.onNoClick();
+            }
+          },
+          error: () => {
+            this.openErrorSnackBar(DataErrorConst.UNKNOWN_ERROR);
+          },
+          complete: () => {}
+        });
+      }
+      else {
+        this.openErrorSnackBar("La somme total doit être supérieure à 0 Ar.");
+      }
+    } catch (error) {
+      this.openErrorSnackBar(DataErrorConst.UNKNOWN_ERROR);
+    }
   }
 }
