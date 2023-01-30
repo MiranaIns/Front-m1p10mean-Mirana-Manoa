@@ -12,10 +12,10 @@ export class AuthService {
   constructor(private httpRequestService: HttpRequestService) { }
 
   public login(user:any): Observable<JsonModel> {
-    return this.httpRequestService.post(environment.apiUrl + DataWsConst.WS_LOGIN,user);
+    return this.httpRequestService.post(null, environment.apiUrl + DataWsConst.WS_LOGIN,user);
   }
 
   public inscription(user:any): Observable<JsonModel> {
-    return this.httpRequestService.post(environment.apiUrl + DataWsConst.WS_INSCRIPTION,user);
+    return this.httpRequestService.post(null, environment.apiUrl + DataWsConst.WS_INSCRIPTION,user);
   }
 }

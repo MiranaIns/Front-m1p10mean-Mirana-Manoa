@@ -8,10 +8,11 @@ import {DataWsConst} from "../../constant/data-ws.const";
 @Injectable({
   providedIn: 'root'
 })
-export class AdminAuthService {
+export class ReparationService {
   constructor(private httpRequestService: HttpRequestService) { }
 
-  public login(user:any): Observable<JsonModel> {
-    return this.httpRequestService.post(null, environment.apiUrl + DataWsConst.WS_ADMIN_LOGIN,user);
+  /*responsable atelier*/
+  public getReparations(): Observable<JsonModel> {
+    return this.httpRequestService.get("RAT", environment.apiUrl + DataWsConst.WS_REPARATION);
   }
 }

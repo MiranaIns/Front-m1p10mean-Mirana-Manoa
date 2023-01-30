@@ -18,6 +18,10 @@ import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from "@angular/material/button";
 import { AjouterVoiturePopUpComponent } from './shared/components/ajouter-voiture-pop-up/ajouter-voiture-pop-up.component';
 import {MatDialogModule} from "@angular/material/dialog";
+import { ResponsableAtelierTemplateComponent } from './layout/components/responsable-atelier/responsable-atelier-template/responsable-atelier-template.component';
+import { DepotsComponent } from './modules/responsable-atelier/depots/depots.component';
+import { FaireDevisPopUpComponent } from "./shared/components/faire-devis-pop-up/faire-devis-pop-up.component";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,7 +32,10 @@ import {MatDialogModule} from "@angular/material/dialog";
     AdminLoginComponent,
     UtilisateurTemplateComponent,
     VoituresComponent,
-    AjouterVoiturePopUpComponent
+    AjouterVoiturePopUpComponent,
+    ResponsableAtelierTemplateComponent,
+    DepotsComponent,
+    FaireDevisPopUpComponent
   ],
   imports: [
     BrowserModule,

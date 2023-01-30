@@ -12,8 +12,6 @@ export class AuthGuardService {
   checkAuthorisation(){
     const helper = new JwtHelperService();
     const token = this.localStorageService.getItem(LocalStorageConst.ACCESS_TOKEN) != null ? this.localStorageService.getItem(LocalStorageConst.ACCESS_TOKEN) : '';
-    console.log(token);
-    console.log(helper.decodeToken(token));
     return !helper.isTokenExpired(token);
   }
 

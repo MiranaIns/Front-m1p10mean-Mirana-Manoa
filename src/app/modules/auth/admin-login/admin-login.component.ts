@@ -54,10 +54,6 @@ export class AdminLoginComponent implements OnInit {
 
   }
 
-  changingUtilisateurType() {
-    console.log()
-  }
-
   openErrorSnackBar(errorMessage: String) {
     this._snackBar.openFromComponent(SnackBarComponent, {
       data : {
@@ -86,12 +82,12 @@ export class AdminLoginComponent implements OnInit {
             if(userInformations.utilisateurType==="RAT") {
               // @ts-ignore
               this.localStorageService.setItem(LocalStorageConst.ACCESS_TOKEN_RAT,res.data[0].access_token);
+              this.router.navigate([DataRoutingConst.ROUTE_RAT_DEPOT]);
             }
             else if(userInformations.utilisateurType==="RFI") {
               // @ts-ignore
               this.localStorageService.setItem(LocalStorageConst.ACCESS_TOKEN_RFI,res.data[0].access_token);
             }
-            this.router.navigate([DataRoutingConst.ROUTE_VOITURES]);
           }
         },
         error: () => {

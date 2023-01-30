@@ -12,8 +12,6 @@ export class RfiAuthGuardService {
   checkAuthorisation(){
     const helper = new JwtHelperService();
     const token = this.localStorageService.getItem(LocalStorageConst.ACCESS_TOKEN_RFI) != null ? this.localStorageService.getItem(LocalStorageConst.ACCESS_TOKEN_RFI) : '';
-    console.log(token);
-    console.log(helper.decodeToken(token));
     return !helper.isTokenExpired(token);
   }
 }

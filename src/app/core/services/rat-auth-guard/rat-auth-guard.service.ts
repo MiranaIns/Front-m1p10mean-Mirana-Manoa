@@ -12,8 +12,6 @@ export class RatAuthGuardService {
   checkAuthorisation(){
     const helper = new JwtHelperService();
     const token = this.localStorageService.getItem(LocalStorageConst.ACCESS_TOKEN_RAT) != null ? this.localStorageService.getItem(LocalStorageConst.ACCESS_TOKEN_RAT) : '';
-    console.log(token);
-    console.log(helper.decodeToken(token));
     return !helper.isTokenExpired(token);
   }
 }

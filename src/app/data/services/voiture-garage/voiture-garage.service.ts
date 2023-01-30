@@ -12,8 +12,13 @@ export class VoitureGarageService {
 
   constructor(private httpRequestService: HttpRequestService) { }
 
+  /*utilisateur*/
   public depotGarage(voiture_uuid : any): Observable<JsonModel> {
-    return this.httpRequestService.post(environment.apiUrl + DataWsConst.WS_VOITURES_GARAGE, voiture_uuid);
+    return this.httpRequestService.post("RAT", environment.apiUrl + DataWsConst.WS_VOITURES_GARAGE, voiture_uuid);
   }
 
+  /*responsable atelier*/
+  public getVoituresGarageDépot(): Observable<JsonModel> {
+    return this.httpRequestService.get("RAT", environment.apiUrl + DataWsConst.WS_VOITURES_GARAGE + "?avancement=Dépot");
+  }
 }
