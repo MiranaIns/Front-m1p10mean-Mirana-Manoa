@@ -13,6 +13,10 @@ import {
   ResponsableAtelierTemplateComponent
 } from "./layout/components/responsable-atelier/responsable-atelier-template/responsable-atelier-template.component";
 import {DepotsComponent} from "./modules/responsable-atelier/depots/depots.component";
+import {ReparationsComponent} from "./modules/responsable-atelier/reparations/reparations.component";
+import {
+  ReparationsEnCoursComponent
+} from "./modules/responsable-atelier/reparations-en-cours/reparations-en-cours.component";
 
 const routes: Routes = [
   { path: '',   redirectTo: DataRoutingConst.ROUTE_LOGIN, pathMatch: 'full' },
@@ -46,7 +50,17 @@ const routes: Routes = [
   {
     path : 'responsable-atelier', component : ResponsableAtelierTemplateComponent, canActivate : [RatAuthGuard],
     children : [
-      { path: 'depots', component:DepotsComponent}
+      {
+        path: 'depots', component:DepotsComponent
+
+      },
+      {
+        path: 'reparations', component:ReparationsComponent
+      }
+      ,
+      {
+        path: 'reparations-en-cours', component:ReparationsEnCoursComponent
+      }
     ]
   },
   {

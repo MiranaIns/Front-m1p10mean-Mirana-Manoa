@@ -11,4 +11,8 @@ export const DataRoutingConst = {
 
   //rat
   ROUTE_RAT_DEPOT : '/responsable-atelier/depots',
+
+  ROUTE_RAT_REP : '/responsable-atelier/reparations',
+
+  ROUTE_RAT_REP_EN_COURS : '/responsable-atelier/reparations-en-cours',
 }

@@ -38,7 +38,7 @@
     <!-- partial:partials/_sidebar.html -->
     <nav class="sidebar sidebar-offcanvas" id="sidebar">
       <ul class="nav">
-        <li *ngFor="let sidebar of sidebarData" class="nav-item" [ngClass]="{'active': sidebar.routerLink == currentPath}" [routerLink]="sidebar.routerLink">
+        <li *ngFor="let sidebar of sidebarData" class="nav-item"  [routerLink]="sidebar.routerLink">
           <a class="nav-link">
             <i class="{{sidebar.icon}}"></i>
             <span class="menu-title" style="margin-left: 10px;">{{sidebar.label}}</span>
