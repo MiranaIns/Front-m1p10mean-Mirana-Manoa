@@ -11,12 +11,17 @@ import {
   AjouterVoiturePopUpComponent
 } from "../../../shared/components/ajouter-voiture-pop-up/ajouter-voiture-pop-up.component";
 import {VoitureGarageService} from "../../../data/services/voiture-garage/voiture-garage.service";
+import {VoirDevisPopUpComponent} from "../../../shared/components/voir-devis-pop-up/voir-devis-pop-up.component";
 
 @Component({
   selector: 'app-voitures',
   templateUrl: './voitures.component.html',
   styleUrls: ['./voitures.component.css',
-    "../../../template/vendors/mdi/css/materialdesignicons.min.css"
+    "../../../template/vendors/mdi/css/materialdesignicons.min.css",
+    "../../../template/vendors/feather/feather.css",
+    "../../../template/vendors/ti-icons/css/themify-icons.css",
+    "../../../template/vendors/css/vendor.bundle.base.css",
+    "../../../template/css/vertical-layout-light/style.css"
   ]
 })
 export class VoituresComponent implements OnInit {
@@ -154,6 +159,12 @@ export class VoituresComponent implements OnInit {
 
   showAddVoiturePopUp() {
     const dialogRef = this.matDialog.open(AjouterVoiturePopUpComponent, {
+      panelClass: "custom-container",
+      autoFocus: false });
+  }
+
+  showVoirDevisPopUp() {
+    const dialogRef = this.matDialog.open(VoirDevisPopUpComponent, {
       panelClass: "custom-container",
       autoFocus: false });
   }

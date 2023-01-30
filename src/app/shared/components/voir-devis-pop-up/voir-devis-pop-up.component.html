@@ -1,0 +1,75 @@
+<div class="close-screen">
+  <button mat-icon-button (click)="onNoClick()">
+    <mat-icon [ngStyle]="{'color':'red'}">close</mat-icon>
+  </button>
+</div>
+<div class="voir-devis-pop-up">
+  <h2>Consulter le devis</h2>
+  <hr>
+  <h3>Voiture informations :</h3>
+  <p><strong>Immatriculation : </strong> Immatriculation</p>
+  <p><strong>Marque : </strong> Marque</p>
+  <p><strong>Modele : </strong> Modele</p>
+  <p><strong>Couleur : </strong> <i class="" style="background-color: red; border: solid 1px; padding: 0 9px 0 10px; margin-left: 5px; border-radius: 20px;"></i></p>
+  <hr>
+  <div class="row">
+    <div class="col-lg-12 grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Devis</h4>
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+              <tr>
+                <th>Nom</th>
+                <th>Pièces</th>
+                <th>Prix</th>
+              </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Réparation</td>
+                  <td>
+                    <ul>
+                      <li >
+                        Piece (2)
+                      </li>
+                    </ul>
+                  </td>
+                  <td>50 000 Ar</td>
+                </tr>
+                <tr>
+                  <td>Réparation</td>
+                  <td>
+                    <ul>
+                      <li >
+                        Piece (2)
+                      </li>
+                    </ul>
+                  </td>
+                  <td>50 000 Ar</td>
+                </tr>
+                <tr>
+                  <td>Réparation</td>
+                  <td>
+                    <ul>
+                      <li >
+                        Piece (2)
+                      </li>
+                    </ul>
+                  </td>
+                  <td>50 000 Ar</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="float: right; margin-right: 50px; min-height: 250px">
+    <h3>Total : 150000 Ar</h3>
+    <button type="submit" class="btn btn-primary mr-2 close-screen">Valider le devis</button>
+  </div>
+</div>
+
