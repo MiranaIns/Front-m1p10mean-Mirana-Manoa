@@ -1,0 +1,160 @@
+import { Component, OnInit } from '@angular/core';
+import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
+import {VoituresService} from "../../../data/services/voitures/voitures.service";
+import {HttpStatusConst} from "../../../shared/constant/http-status.const";
+import {SnackBarComponent} from "../../../shared/components/snack-bar/snack-bar.component";
+import {MatSnackBar} from "@angular/material/snack-bar";
+import {DataErrorConst} from "../../../data/constant/data-error.const";
+import { VoitureInterface} from "../../../data/interfaces/voiture.interface";
+import {MatDialog} from "@angular/material/dialog";
+import {
+  AjouterVoiturePopUpComponent
+} from "../../../shared/components/ajouter-voiture-pop-up/ajouter-voiture-pop-up.component";
+import {VoitureGarageService} from "../../../data/services/voiture-garage/voiture-garage.service";
+
+@Component({
+  selector: 'app-voitures',
+  templateUrl: './voitures.component.html',
+  styleUrls: ['./voitures.component.css',
+    "../../../template/vendors/mdi/css/materialdesignicons.min.css"
+  ]
+})
+export class VoituresComponent implements OnInit {
+  voitures : VoitureInterface[] = []
+  garage : VoitureInterface[] = [];
+
+  constructor(
+    private matDialog: MatDialog,
+    private _snackBar: MatSnackBar,
+    private voituresService: VoituresService,
+    private voitureGarageService: VoitureGarageService
+  ) {}
+
+  ngOnInit() {
+    this.voituresService.refreshNeeded.subscribe(() => {
+      this.getAllVoitures();
+    });
+    this.getAllVoitures();
+    this.getAllVoituresInGarage();
+  }
+
+  private getAllVoitures() {
+    this.voituresService.getAllVoitures().subscribe({
+      next: res => {
+        if(res.status != HttpStatusConst.SUCCESS ){
+          this.openErrorSnackBar(DataErrorConst.UNKNOWN_ERROR);
+        }
+        else {
+          let data = res.data;
+          if(data!=undefined) {
+            try {
+              // @ts-ignore
+              this.voitures = data.voitures;
+            }
+            catch (e) {
+              console.log(e);
+              this.openErrorSnackBar(DataErrorConst.UNKNOWN_ERROR);
+            }
+          }
+          else {
+            this.openErrorSnackBar(DataErrorConst.UNKNOWN_ERROR);
+          }
+        }
+      },
+      error: () => {
+        this.openErrorSnackBar(DataErrorConst.UNKNOWN_ERROR);
+      },
+      complete: () => {}
+    })
+  }
+
+  private getAllVoituresInGarage() {
+    this.voituresService.getAllVoituresInGarage().subscribe({
+      next: res => {
+        if(res.status != HttpStatusConst.SUCCESS ){
+          this.openErrorSnackBar(DataErrorConst.UNKNOWN_ERROR);
+        }
+        else {
+          let data = res.data;
+          if(data!=undefined) {
+            try {
+              // @ts-ignore
+              this.garage = data.voitures;
+            }
+            catch (e) {
+              console.log(e);
+              this.openErrorSnackBar(DataErrorConst.UNKNOWN_ERROR);
+            }
+          }
+          else {
+            this.openErrorSnackBar(DataErrorConst.UNKNOWN_ERROR);
+          }
+        }
+      },
+      error: () => {
+        this.openErrorSnackBar(DataErrorConst.UNKNOWN_ERROR);
+      },
+      complete: () => {}
+    })
+  }
+
+
+  private depotGarage(voiture : VoitureInterface) {
+    let voiture_uuid = {
+      "voiture_uuid" : voiture.voiture_uuid
+    }
+    this.voitureGarageService.depotGarage(voiture_uuid).subscribe({
+      next: res => {
+        if(res.status != HttpStatusConst.CREATED ){
+          this.openErrorSnackBar(DataErrorConst.UNKNOWN_ERROR);
+        }
+      },
+      error: () => {
+        this.openErrorSnackBar(DataErrorConst.UNKNOWN_ERROR);
+      },
+      complete: () => {}
+    })
+  }
+
+  openErrorSnackBar(errorMessage: String) {
+    this._snackBar.openFromComponent(SnackBarComponent, {
+      data : {
+        message : errorMessage
+      },
+      duration: 3000,
+      verticalPosition : 'bottom',
+      horizontalPosition : 'center',
+      panelClass : 'error'
+    });
+  }
+
+  drop(event: CdkDragDrop<any, any>) {
+    // @ts-ignore
+    if (event.previousContainer === event.container) {
+      // @ts-ignore
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    } else {
+      if(event!=undefined) {
+        /*dépot voiture*/
+        if(event.container.id === "liste_garage" && event.previousContainer.id === "liste_voitures") {
+          transferArrayItem(
+            event.previousContainer.data,
+            event.container.data,
+            event.previousIndex,
+            event.currentIndex,
+          );
+          this.depotGarage(this.garage[event.currentIndex]);
+        }
+      }
+      else {
+        this.openErrorSnackBar(DataErrorConst.UNKNOWN_ERROR);
+      }
+    }
+  }
+
+  showAddVoiturePopUp() {
+    const dialogRef = this.matDialog.open(AjouterVoiturePopUpComponent, {
+      panelClass: "custom-container",
+      autoFocus: false });
+  }
+}
