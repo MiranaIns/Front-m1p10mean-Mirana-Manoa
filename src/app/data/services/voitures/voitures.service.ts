@@ -12,6 +12,10 @@ export class VoituresService {
   constructor(private httpRequestService: HttpRequestService) { }
 
   public getAllVoitures(): Observable<JsonModel> {
-    return this.httpRequestService.get(environment.apiUrl + DataWsConst.WS_GET_ALL_VOITURES);
+    return this.httpRequestService.get(environment.apiUrl + DataWsConst.WS_VOITURES);
+  }
+
+  public addVoiture(voiture: any): Observable<JsonModel> {
+    return this.httpRequestService.post(environment.apiUrl + DataWsConst.WS_VOITURES, voiture);
   }
 }

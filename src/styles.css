@@ -20,3 +20,7 @@ body { margin: 0; font-family: Roboto, Nunito, "Helvetica Neue", sans-serif; }
   border-radius: 10px !important;
 }
 
+.mat-dialog-container {
+  z-index: 9999;
+}
+
