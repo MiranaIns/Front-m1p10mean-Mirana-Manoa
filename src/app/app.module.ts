@@ -22,6 +22,7 @@ import { ResponsableAtelierTemplateComponent } from './layout/components/respons
 import { DepotsComponent } from './modules/responsable-atelier/depots/depots.component';
 import { FaireDevisPopUpComponent } from "./shared/components/faire-devis-pop-up/faire-devis-pop-up.component";
 import { VoirDevisPopUpComponent } from './shared/components/voir-devis-pop-up/voir-devis-pop-up.component';
+import { VoirAvancementPopUpComponent } from './shared/components/voir-avancement-pop-up/voir-avancement-pop-up.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { VoirDevisPopUpComponent } from './shared/components/voir-devis-pop-up/v
     ResponsableAtelierTemplateComponent,
     DepotsComponent,
     FaireDevisPopUpComponent,
-    VoirDevisPopUpComponent
+    VoirDevisPopUpComponent,
+    VoirAvancementPopUpComponent
   ],
   imports: [
     BrowserModule,

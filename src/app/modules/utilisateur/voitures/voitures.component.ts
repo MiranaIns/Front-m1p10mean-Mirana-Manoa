@@ -12,6 +12,9 @@ import {
 } from "../../../shared/components/ajouter-voiture-pop-up/ajouter-voiture-pop-up.component";
 import {VoitureGarageService} from "../../../data/services/voiture-garage/voiture-garage.service";
 import {VoirDevisPopUpComponent} from "../../../shared/components/voir-devis-pop-up/voir-devis-pop-up.component";
+import {
+  VoirAvancementPopUpComponent
+} from "../../../shared/components/voir-avancement-pop-up/voir-avancement-pop-up.component";
 
 @Component({
   selector: 'app-voitures',
@@ -165,6 +168,12 @@ export class VoituresComponent implements OnInit {
 
   showVoirDevisPopUp() {
     const dialogRef = this.matDialog.open(VoirDevisPopUpComponent, {
+      panelClass: "custom-container",
+      autoFocus: false });
+  }
+
+  showVoirAvancementPopUp() {
+    const dialogRef = this.matDialog.open(VoirAvancementPopUpComponent, {
       panelClass: "custom-container",
       autoFocus: false });
   }

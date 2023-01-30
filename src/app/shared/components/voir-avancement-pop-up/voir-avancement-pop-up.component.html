@@ -1,0 +1,76 @@
+<div class="close-screen">
+  <button mat-icon-button (click)="onNoClick()">
+    <mat-icon [ngStyle]="{'color':'red'}">close</mat-icon>
+  </button>
+</div>
+<div class="voir-avancement-pop-up">
+  <h3>Consulter l'avancement des réparations</h3>
+  <hr>
+  <h4>Voiture informations :</h4>
+  <p><strong>Immatriculation : </strong> Immatriculation</p>
+  <p><strong>Marque : </strong> Marque</p>
+  <p><strong>Modele : </strong> Modele</p>
+  <p><strong>Couleur : </strong> <i class="" style="background-color: red; border: solid 1px; padding: 0 9px 0 10px; margin-left: 5px; border-radius: 20px;"></i></p>
+  <hr>
+  <div class="row">
+    <div class="col-lg-12 grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Acancement des réparations : 25%
+            <div class="progress" style="width: 200px; margin: 20px;">
+              <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+          </h4>
+          <br>
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+              <tr>
+                <th>Nom</th>
+                <th>Pièces</th>
+                <th>Statut</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr>
+                <td>Réparation</td>
+                <td>
+                  <ul>
+                    <li >
+                      Piece (2)
+                    </li>
+                  </ul>
+                </td>
+                <td><label class="badge badge-danger" style="margin-right: 10px;">Pas commencé</label></td>
+              </tr>
+              <tr>
+                <td>Réparation</td>
+                <td>
+                  <ul>
+                    <li >
+                      Piece (2)
+                    </li>
+                  </ul>
+                </td>
+                <td><label class="badge badge-info" style="margin-right: 10px;">En cours</label></td>
+              </tr>
+              <tr>
+                <td>Réparation</td>
+                <td>
+                  <ul>
+                    <li >
+                      Piece (2)
+                    </li>
+                  </ul>
+                </td>
+                <td><label class="badge badge-success" style="margin-right: 10px;">Terminé</label></td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
