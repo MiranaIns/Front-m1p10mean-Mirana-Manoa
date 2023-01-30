@@ -8,6 +8,10 @@ import {AdminLoginComponent} from "./modules/auth/admin-login/admin-login.compon
 import { UtilisateurTemplateComponent } from "./layout/components/utilisateur/utilisateur-template/utilisateur-template.component";
 import {DataRoutingConst} from "./data/constant/data-routing.const";
 import {VoituresComponent} from "./modules/utilisateur/voitures/voitures.component";
+import {RatAuthGuard} from "./core/guard/rat-auth-guard";
+import {
+  ResponsableAtelierTemplateComponent
+} from "./layout/components/responsable-atelier/responsable-atelier-template/responsable-atelier-template.component";
 
 const routes: Routes = [
   { path: '',   redirectTo: DataRoutingConst.ROUTE_LOGIN, pathMatch: 'full' },
@@ -36,6 +40,12 @@ const routes: Routes = [
     path : 'garage', component : UtilisateurTemplateComponent, canActivate : [AuthGuard],
     children : [
     	{ path: 'voitures', component:VoituresComponent}
+    ]
+  },
+  {
+    path : 'responsable-atelier', component : ResponsableAtelierTemplateComponent, canActivate : [RatAuthGuard],
+    children : [
+      { path: 'depots', component:VoituresComponent}
     ]
   },
   {
