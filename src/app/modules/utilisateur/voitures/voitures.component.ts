@@ -5,7 +5,6 @@ import {HttpStatusConst} from "../../../shared/constant/http-status.const";
 import {SnackBarComponent} from "../../../shared/components/snack-bar/snack-bar.component";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {DataErrorConst} from "../../../data/constant/data-error.const";
-import { VoitureInterface} from "../../../data/interfaces/voiture.interface";
 import {MatDialog} from "@angular/material/dialog";
 import {
   AjouterVoiturePopUpComponent
@@ -25,8 +24,8 @@ import {VoirDevisPopUpComponent} from "../../../shared/components/voir-devis-pop
   ]
 })
 export class VoituresComponent implements OnInit {
-  voitures : VoitureInterface[] = []
-  garage : VoitureInterface[] = [];
+  voitures : any[] = []
+  garage : any[] = [];
 
   constructor(
     private matDialog: MatDialog,
@@ -40,6 +39,9 @@ export class VoituresComponent implements OnInit {
       this.getAllVoitures();
     });
     this.getAllVoitures();
+    this.voitureGarageService.refreshNeeded.subscribe(() => {
+      this.getAllVoituresInGarage();
+    });
     this.getAllVoituresInGarage();
   }
 
@@ -74,7 +76,7 @@ export class VoituresComponent implements OnInit {
   }
 
   private getAllVoituresInGarage() {
-    this.voituresService.getAllVoituresInGarage().subscribe({
+    this.voitureGarageService.getVoituresGarage().subscribe({
       next: res => {
         if(res.status != HttpStatusConst.SUCCESS ){
           this.openErrorSnackBar(DataErrorConst.UNKNOWN_ERROR);
@@ -104,7 +106,7 @@ export class VoituresComponent implements OnInit {
   }
 
 
-  private depotGarage(voiture : VoitureInterface) {
+  private depotGarage(voiture : any) {
     let voiture_uuid = {
       "voiture_uuid" : voiture.voiture_uuid
     }

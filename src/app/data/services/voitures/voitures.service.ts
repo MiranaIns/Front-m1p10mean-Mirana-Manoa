@@ -4,12 +4,13 @@ import {Observable, Subject, tap} from "rxjs";
 import {JsonModel} from "../../../core/bean/json-model";
 import {environment} from "../../../../environments/environment";
 import {DataWsConst} from "../../constant/data-ws.const";
+import {VoitureGarageService} from "../voiture-garage/voiture-garage.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class VoituresService {
-  constructor(private httpRequestService: HttpRequestService) { }
+  constructor(private httpRequestService: HttpRequestService, private voitureGarageService: VoitureGarageService) { }
 
   private _refreshNeeded = new Subject<void> ();
 
@@ -40,6 +41,6 @@ export class VoituresService {
       tap(() => {
         this._refreshNeeded.next();
       })
-    );
+    )
   }
 }

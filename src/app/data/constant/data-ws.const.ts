@@ -9,6 +9,7 @@ export const DataWsConst = {
 
   //voitureGarageService
   WS_VOITURES_GARAGE : "/voitures/garage",
+  WS_VOITURES_GARAGE_CLIENT : "/voitures/garage/client",
 
   //reparation service
   WS_REPARATION : "/reparations",
