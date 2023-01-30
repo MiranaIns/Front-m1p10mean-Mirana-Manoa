@@ -63,7 +63,12 @@ export class VoituresService {
   }
 
   public validerDevis(voiture_devis_uuid : any) : Observable<JsonModel> {
-    return this.httpRequestService.post("USER", environment.apiUrl + DataWsConst.WS_VOITURES_DEVIS_VALIDER, voiture_devis_uuid);
+    return this.httpRequestService.post("USER", environment.apiUrl + DataWsConst.WS_VOITURES_DEVIS_VALIDER, voiture_devis_uuid)
+      .pipe(
+      tap(() => {
+        this._refreshNeeded.next();
+      })
+    );
   }
 
   /*responsable atelier*/
