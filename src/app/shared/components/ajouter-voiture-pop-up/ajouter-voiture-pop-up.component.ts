@@ -25,8 +25,12 @@ export class AjouterVoiturePopUpComponent implements OnInit {
   couleurs =
     [
       {
-        display_type:"Bleu",
-        valeur:"blue"
+        display_type:"Jaune",
+        valeur:"yellow"
+      },
+      {
+        display_type:"Orange",
+        valeur:"orange"
       },
       {
         display_type:"Rouge",
@@ -35,6 +39,26 @@ export class AjouterVoiturePopUpComponent implements OnInit {
       {
         display_type:"Vert",
         valeur:"green"
+      },
+      {
+        display_type:"Bleu",
+        valeur:"blue"
+      },
+      {
+        display_type:"Violet",
+        valeur:"indigo"
+      },
+      {
+        display_type:"Noir",
+        valeur:"black"
+      },
+      {
+        display_type:"Gris",
+        valeur:"grey"
+      },
+      {
+        display_type:"Blanc",
+        valeur:"white"
       }
     ]
 
