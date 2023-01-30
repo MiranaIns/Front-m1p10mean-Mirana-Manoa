@@ -7,10 +7,16 @@
   <h3>Consulter le devis</h3>
   <hr>
   <h4>Voiture informations :</h4>
-  <p><strong>Immatriculation : </strong> Immatriculation</p>
-  <p><strong>Marque : </strong> Marque</p>
-  <p><strong>Modele : </strong> Modele</p>
-  <p><strong>Couleur : </strong> <i class="" style="background-color: red; border: solid 1px; padding: 0 9px 0 10px; margin-left: 5px; border-radius: 20px;"></i></p>
+  <p><strong>Immatriculation : </strong> {{voiture_detail.voiture_immatriculation}}</p>
+  <p><strong>Marque : </strong> {{voiture_detail.voiture_marque}}</p>
+  <p><strong>Modele : </strong> {{voiture_detail.voiture_modele}}</p>
+  <p><strong>Couleur : </strong> <i class="" [style.background-color]="voiture_detail.voiture_couleur" style="border: solid 1px; padding: 0 9px 0 10px; margin-left: 5px; border-radius: 20px;"></i></p>
+  <hr>
+  <h4>Devis informations :</h4>
+  <p><strong>Date devis : </strong> {{changeDateUTCToLocalTimezone(devis_detail.voiture_devis_date)}}</p>
+  <p><strong>Fait par (responsable atelier) : </strong>{{devis_detail.responsableAtelier.utilisateur_prenom}} {{devis_detail.responsableAtelier.utilisateur_nom}} ({{devis_detail.responsableAtelier.utilisateur_mail}})</p>
+  <p><strong>Description : </strong> {{devis_detail.voiture_devis_description}}</p>
+  <p><strong>Statut : </strong> <label class="badge badge-warning" style="margin-right: 10px;">{{devis_detail.voiture_devis_etat}}</label></p>
   <hr>
   <div class="row">
     <div class="col-lg-12 grid-margin stretch-card">
@@ -21,44 +27,14 @@
             <table class="table">
               <thead>
               <tr>
-                <th>Nom</th>
-                <th>Pièces</th>
+                <th>Nom réparation</th>
                 <th>Prix</th>
               </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>Réparation</td>
-                  <td>
-                    <ul>
-                      <li >
-                        Piece (2)
-                      </li>
-                    </ul>
-                  </td>
-                  <td>50 000 Ar</td>
-                </tr>
-                <tr>
-                  <td>Réparation</td>
-                  <td>
-                    <ul>
-                      <li >
-                        Piece (2)
-                      </li>
-                    </ul>
-                  </td>
-                  <td>50 000 Ar</td>
-                </tr>
-                <tr>
-                  <td>Réparation</td>
-                  <td>
-                    <ul>
-                      <li >
-                        Piece (2)
-                      </li>
-                    </ul>
-                  </td>
-                  <td>50 000 Ar</td>
+                <tr *ngFor="let reparation of devis_detail.voiture_devis_reparations">
+                  <td>{{reparation.details.reparation_intitule}}</td>
+                  <td>{{reparation.details.reparation_prix}} Ar</td>
                 </tr>
               </tbody>
             </table>
@@ -68,8 +44,9 @@
     </div>
   </div>
   <div style="float: right; margin-right: 50px; min-height: 250px">
-    <h4>Total : 150000 Ar</h4>
-    <button type="submit" class="btn btn-primary mr-2 close-screen">Valider le devis</button>
+    <h4>Total : {{devis_detail.voiture_devis_prix}} Ar</h4>
+    <button type="submit" class="btn btn-light mr-2" (click)="annulerDevis()">Annuler le devis</button>
+    <button type="submit" class="btn btn-primary mr-2"  (click)="validerDevis()">Valider le devis</button>
   </div>
 </div>
 

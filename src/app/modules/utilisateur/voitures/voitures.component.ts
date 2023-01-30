@@ -9,7 +9,6 @@ import {MatDialog} from "@angular/material/dialog";
 import {
   AjouterVoiturePopUpComponent
 } from "../../../shared/components/ajouter-voiture-pop-up/ajouter-voiture-pop-up.component";
-import {VoitureGarageService} from "../../../data/services/voiture-garage/voiture-garage.service";
 import {VoirDevisPopUpComponent} from "../../../shared/components/voir-devis-pop-up/voir-devis-pop-up.component";
 
 @Component({
@@ -30,8 +29,7 @@ export class VoituresComponent implements OnInit {
   constructor(
     private matDialog: MatDialog,
     private _snackBar: MatSnackBar,
-    private voituresService: VoituresService,
-    private voitureGarageService: VoitureGarageService
+    private voituresService: VoituresService
   ) {}
 
   ngOnInit() {
@@ -39,7 +37,7 @@ export class VoituresComponent implements OnInit {
       this.getAllVoitures();
     });
     this.getAllVoitures();
-    this.voitureGarageService.refreshNeeded.subscribe(() => {
+    this.voituresService.refreshNeeded.subscribe(() => {
       this.getAllVoituresInGarage();
     });
     this.getAllVoituresInGarage();
@@ -76,8 +74,9 @@ export class VoituresComponent implements OnInit {
   }
 
   private getAllVoituresInGarage() {
-    this.voitureGarageService.getVoituresGarage().subscribe({
+    this.voituresService.getVoituresGarage().subscribe({
       next: res => {
+        console.log(res);
         if(res.status != HttpStatusConst.SUCCESS ){
           this.openErrorSnackBar(DataErrorConst.UNKNOWN_ERROR);
         }
@@ -87,6 +86,7 @@ export class VoituresComponent implements OnInit {
             try {
               // @ts-ignore
               this.garage = data.voitures;
+              console.log(this.garage);
             }
             catch (e) {
               console.log(e);
@@ -110,7 +110,7 @@ export class VoituresComponent implements OnInit {
     let voiture_uuid = {
       "voiture_uuid" : voiture.voiture_uuid
     }
-    this.voitureGarageService.depotGarage(voiture_uuid).subscribe({
+    this.voituresService.depotGarage(voiture_uuid).subscribe({
       next: res => {
         if(res.status != HttpStatusConst.CREATED ){
           this.openErrorSnackBar(DataErrorConst.UNKNOWN_ERROR);
@@ -165,8 +165,9 @@ export class VoituresComponent implements OnInit {
       autoFocus: false });
   }
 
-  showVoirDevisPopUp() {
+  showVoirDevisPopUp(voiture : any) {
     const dialogRef = this.matDialog.open(VoirDevisPopUpComponent, {
+      data: {voiture_garage: voiture },
       panelClass: "custom-container",
       autoFocus: false });
   }

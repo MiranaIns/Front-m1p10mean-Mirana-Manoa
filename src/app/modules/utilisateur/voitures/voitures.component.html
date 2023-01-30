@@ -48,8 +48,12 @@
       </div>
       <div *ngIf="voiture.voiture_garage_avancement === 'Devis'" style="float: right">
         <label class="badge badge-warning" style="margin-right: 10px;">Devis en attente de validation</label>
-        <button type="submit" class="btn btn-primary mr-2 close-screen" (click)="showVoirDevisPopUp()">Voir devis</button>
+        <button type="submit" class="btn btn-primary mr-2 close-screen" (click)="showVoirDevisPopUp(voiture)">Voir devis</button>
       </div>
+      <div *ngIf="voiture.voiture_garage_avancement === 'reparation'" style="float: right">
+        <label class="badge badge-info" style="margin-right: 10px;">Réparation</label>
+      </div>
+
     </div>
   </div>
 </div>
