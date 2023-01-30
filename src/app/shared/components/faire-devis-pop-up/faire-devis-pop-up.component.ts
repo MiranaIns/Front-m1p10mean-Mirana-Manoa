@@ -18,11 +18,14 @@ export class FaireDevisPopUpComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit(): void {
-    console.log(this.data.voiture_garage);
     this.voiture_detail = this.data.voiture_garage.voiture_details;
   }
 
   onNoClick(): void {
     this.dialogRef.close();
+  }
+
+  test() {
+    console.log("HhHhHahahahaha")
   }
 }
