@@ -14,7 +14,7 @@ export class VoitureGarageService {
 
   /*utilisateur*/
   public depotGarage(voiture_uuid : any): Observable<JsonModel> {
-    return this.httpRequestService.post("RAT", environment.apiUrl + DataWsConst.WS_VOITURES_GARAGE, voiture_uuid);
+    return this.httpRequestService.post("USER", environment.apiUrl + DataWsConst.WS_VOITURES_GARAGE, voiture_uuid);
   }
 
   /*responsable atelier*/
