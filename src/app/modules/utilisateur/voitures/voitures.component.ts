@@ -28,6 +28,13 @@ export class VoituresComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.voituresService.refreshNeeded.subscribe(() => {
+      this.getAllVoitures();
+    });
+    this.getAllVoitures();
+  }
+
+  private getAllVoitures() {
     this.voituresService.getAllVoitures().subscribe({
       next: res => {
         if(res.status != HttpStatusConst.SUCCESS ){
@@ -50,10 +57,10 @@ export class VoituresComponent implements OnInit {
           }
         }
       },
-        error: () => {
+      error: () => {
         this.openErrorSnackBar(DataErrorConst.UNKNOWN_ERROR);
       },
-        complete: () => {}
+      complete: () => {}
     })
   }
 
