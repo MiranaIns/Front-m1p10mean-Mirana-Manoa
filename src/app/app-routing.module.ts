@@ -12,6 +12,7 @@ import {RatAuthGuard} from "./core/guard/rat-auth-guard";
 import {
   ResponsableAtelierTemplateComponent
 } from "./layout/components/responsable-atelier/responsable-atelier-template/responsable-atelier-template.component";
+import {DepotsComponent} from "./modules/responsable-atelier/depots/depots.component";
 
 const routes: Routes = [
   { path: '',   redirectTo: DataRoutingConst.ROUTE_LOGIN, pathMatch: 'full' },
@@ -45,7 +46,7 @@ const routes: Routes = [
   {
     path : 'responsable-atelier', component : ResponsableAtelierTemplateComponent, canActivate : [RatAuthGuard],
     children : [
-      { path: 'depots', component:VoituresComponent}
+      { path: 'depots', component:DepotsComponent}
     ]
   },
   {
