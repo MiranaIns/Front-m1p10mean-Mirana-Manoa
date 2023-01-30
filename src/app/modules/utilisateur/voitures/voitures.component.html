@@ -1,33 +1,4 @@
 <h1>Liste des voitures</h1>
-<!--
-<div class="example-container">
-  <h2>Vos voitures</h2>
-
-  <div
-    cdkDropList
-    #todoList="cdkDropList"
-    [cdkDropListData]="voitures"
-    [cdkDropListConnectedTo]="[doneList]" #do not forget on drag and drop
-    class="example-list"
-    (cdkDropListDropped)="drop($event)">
-    <div class="example-box" *ngFor="let item of voitures" cdkDrag>{{item.voiture_marque}}</div>
-  </div>
-</div>
-
-<div class="example-container" style="width: 50%;">
-  <h2>Voitures au garage</h2>
-
-  <div
-    cdkDropList
-    #doneList="cdkDropList"
-    [cdkDropListData]="done"
-    [cdkDropListConnectedTo]="[todoList]"
-    class="example-list"
-    (cdkDropListDropped)="drop($event)">
-    <div class="example-box" *ngFor="let item of done" cdkDrag>{{item}}</div>
-  </div>
-</div>
--->
 
 <div class="example-container" style="width: 30%;">
   <h2>Vos voitures</h2>
@@ -39,8 +10,9 @@
   </div>
   <div
     cdkDropList
-    #todoList="cdkDropList"
+    id="liste_voitures"
     [cdkDropListData]="voitures"
+    cdkDropListConnectedTo="liste_garage"
     class="example-list"
     (cdkDropListDropped)="drop($event)">
     <div class="example-box" *ngFor="let voiture of voitures" cdkDrag>
@@ -50,8 +22,27 @@
         <p><strong>Modele : </strong>{{voiture.voiture_modele}}</p>
         <p><strong>Couleur : </strong> <i class="" [style.background-color]="voiture.voiture_couleur" style="border: solid 1px; padding: 0 9px 0 10px; margin-left: 5px; border-radius: 20px;"></i></p>
       </div>
+    </div>
   </div>
 </div>
 
+<div class="example-container" style="width: 50%;">
+  <h2>Voitures au garage</h2>
 
-
+  <div
+    cdkDropList
+    id="liste_garage"
+    [cdkDropListData]="garage"
+    cdkDropListConnectedTo="liste_voitures"
+    class="example-list"
+    (cdkDropListDropped)="drop($event)">
+    <div class="example-box" *ngFor="let voiture of garage" cdkDrag>
+      <div class="item-container">
+        <h3><strong>{{voiture.voiture_immatriculation}}</strong></h3>
+        <p><strong>Marque : </strong>{{voiture.voiture_marque}}</p>
+        <p><strong>Modele : </strong>{{voiture.voiture_modele}}</p>
+        <p><strong>Couleur : </strong> <i class="" [style.background-color]="voiture.voiture_couleur" style="border: solid 1px; padding: 0 9px 0 10px; margin-left: 5px; border-radius: 20px;"></i></p>
+      </div>
+    </div>
+  </div>
+</div>

@@ -10,6 +10,7 @@ import {MatDialog} from "@angular/material/dialog";
 import {
   AjouterVoiturePopUpComponent
 } from "../../../shared/components/ajouter-voiture-pop-up/ajouter-voiture-pop-up.component";
+import {VoitureGarageService} from "../../../data/services/voiture-garage/voiture-garage.service";
 
 @Component({
   selector: 'app-voitures',
@@ -20,11 +21,13 @@ import {
 })
 export class VoituresComponent implements OnInit {
   voitures : VoitureInterface[] = []
+  garage : VoitureInterface[] = [];
 
   constructor(
     private matDialog: MatDialog,
     private _snackBar: MatSnackBar,
-    private voituresService: VoituresService
+    private voituresService: VoituresService,
+    private voitureGarageService: VoitureGarageService
   ) {}
 
   ngOnInit() {
@@ -32,6 +35,7 @@ export class VoituresComponent implements OnInit {
       this.getAllVoitures();
     });
     this.getAllVoitures();
+    this.getAllVoituresInGarage();
   }
 
   private getAllVoitures() {
@@ -64,6 +68,54 @@ export class VoituresComponent implements OnInit {
     })
   }
 
+  private getAllVoituresInGarage() {
+    this.voituresService.getAllVoituresInGarage().subscribe({
+      next: res => {
+        if(res.status != HttpStatusConst.SUCCESS ){
+          this.openErrorSnackBar(DataErrorConst.UNKNOWN_ERROR);
+        }
+        else {
+          let data = res.data;
+          if(data!=undefined) {
+            try {
+              // @ts-ignore
+              this.garage = data.voitures;
+            }
+            catch (e) {
+              console.log(e);
+              this.openErrorSnackBar(DataErrorConst.UNKNOWN_ERROR);
+            }
+          }
+          else {
+            this.openErrorSnackBar(DataErrorConst.UNKNOWN_ERROR);
+          }
+        }
+      },
+      error: () => {
+        this.openErrorSnackBar(DataErrorConst.UNKNOWN_ERROR);
+      },
+      complete: () => {}
+    })
+  }
+
+
+  private depotGarage(voiture : VoitureInterface) {
+    let voiture_uuid = {
+      "voiture_uuid" : voiture.voiture_uuid
+    }
+    this.voitureGarageService.depotGarage(voiture_uuid).subscribe({
+      next: res => {
+        if(res.status != HttpStatusConst.CREATED ){
+          this.openErrorSnackBar(DataErrorConst.UNKNOWN_ERROR);
+        }
+      },
+      error: () => {
+        this.openErrorSnackBar(DataErrorConst.UNKNOWN_ERROR);
+      },
+      complete: () => {}
+    })
+  }
+
   openErrorSnackBar(errorMessage: String) {
     this._snackBar.openFromComponent(SnackBarComponent, {
       data : {
@@ -76,10 +128,6 @@ export class VoituresComponent implements OnInit {
     });
   }
 
-  todo = ['Get to work', 'Pick up groceries', 'Go home', 'Fall asleep'];
-
-  done = ['Get up', 'Brush teeth', 'Take a shower', 'Check e-mail', 'Walk dog'];
-
   drop(event: CdkDragDrop<any, any>) {
     // @ts-ignore
     if (event.previousContainer === event.container) {
@@ -87,12 +135,16 @@ export class VoituresComponent implements OnInit {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
       if(event!=undefined) {
-        transferArrayItem(
-          event.previousContainer.data,
-          event.container.data,
-          event.previousIndex,
-          event.currentIndex,
-        );
+        /*dépot voiture*/
+        if(event.container.id === "liste_garage" && event.previousContainer.id === "liste_voitures") {
+          transferArrayItem(
+            event.previousContainer.data,
+            event.container.data,
+            event.previousIndex,
+            event.currentIndex,
+          );
+          this.depotGarage(this.garage[event.currentIndex]);
+        }
       }
       else {
         this.openErrorSnackBar(DataErrorConst.UNKNOWN_ERROR);
