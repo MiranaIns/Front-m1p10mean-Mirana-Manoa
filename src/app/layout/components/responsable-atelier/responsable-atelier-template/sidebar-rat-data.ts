@@ -9,7 +9,7 @@ export const sidebarRatData = [
   {
     routerLink: DataRoutingConst.ROUTE_RAT_REP,
     icon: 'mdi mdi-settings',
-    label: 'Réparations'
+    label: 'Réparations à faire'
   },
   {
     routerLink: DataRoutingConst.ROUTE_RAT_REP_EN_COURS,

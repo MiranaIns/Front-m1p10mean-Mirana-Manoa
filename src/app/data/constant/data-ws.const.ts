@@ -14,6 +14,10 @@ export const DataWsConst = {
 
   //reparation service
   WS_REPARATION : "/reparations",
+  WS_REPARATION_A_FAIRE : "/reparations/a-faire",
+  WS_REPARATION_EN_COURS : "/reparations/en-cours",
+  WS_REPARATION_COMMENCER : "/reparations/commencer",
+  WS_REPARATION_TERMINER : "/reparations/terminer",
 
   // adminAuthService
   WS_ADMIN_LOGIN : '/admin/authentification/login'

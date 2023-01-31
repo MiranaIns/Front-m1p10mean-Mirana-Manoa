@@ -1,1 +1,27 @@
-<p>reparations-en-cours works!</p>
+<div class="row">
+  <div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <h1 class="card-title">Liste des réparations en cours</h1>
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+            <tr>
+              <th>Nom réparation</th>
+              <th>Prix</th>
+              <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let reparation of reparationEnCours">
+              <td>{{reparation.reparation_details.reparation_intitule}}</td>
+              <td>{{reparation.voiture_reparation_totale}} Ar</td>
+              <td><button type="submit" class="btn btn-primary mr-2" (click)="terminerReparation(reparation)">Terminer</button></td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
