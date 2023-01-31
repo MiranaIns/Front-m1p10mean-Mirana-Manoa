@@ -17,6 +17,8 @@ export class VoituresService {
     return this._refreshNeeded;
   }
 
+  /*utilisateur*/
+
   public getAllVoitures(): Observable<JsonModel> {
     return this.httpRequestService.get("USER", environment.apiUrl + DataWsConst.WS_VOITURES + "?etat=false");
   }
@@ -34,12 +36,53 @@ export class VoituresService {
       );
   }
 
-  public insertDevis(devis: any) {
-    return this.httpRequestService.post("RAT", environment.apiUrl + DataWsConst.WS_VOITURES_ADD_DEVIS, devis)
-    .pipe(
+  public getDevis(voiture_garage_uuid : string) {
+    return this.httpRequestService.get("USER", environment.apiUrl + DataWsConst.WS_VOITURES_ADD_DEVIS + "?voiture_garage_uuid="+voiture_garage_uuid)
+  }
+
+  public depotGarage(voiture_uuid : any): Observable<JsonModel> {
+    return this.httpRequestService.post("USER", environment.apiUrl + DataWsConst.WS_VOITURES_GARAGE, voiture_uuid)
+      .pipe(
+        tap(() => {
+          this._refreshNeeded.next();
+        })
+      );
+  }
+
+  public getVoituresGarage(): Observable<JsonModel> {
+    return this.httpRequestService.get("USER", environment.apiUrl + DataWsConst.WS_VOITURES_GARAGE_CLIENT);
+  }
+
+  public annulerDevis(voiture_devis_uuid : any) : Observable<JsonModel> {
+    return this.httpRequestService.post("USER", environment.apiUrl + DataWsConst.WS_VOITURES_DEVIS_ANNULER, voiture_devis_uuid)
+      .pipe(
+        tap(() => {
+          this._refreshNeeded.next();
+        })
+      );
+  }
+
+  public validerDevis(voiture_devis_uuid : any) : Observable<JsonModel> {
+    return this.httpRequestService.post("USER", environment.apiUrl + DataWsConst.WS_VOITURES_DEVIS_VALIDER, voiture_devis_uuid)
+      .pipe(
       tap(() => {
         this._refreshNeeded.next();
       })
     );
+  }
+
+  /*responsable atelier*/
+
+  public insertDevis(devis: any) {
+    return this.httpRequestService.post("RAT", environment.apiUrl + DataWsConst.WS_VOITURES_ADD_DEVIS, devis)
+      .pipe(
+        tap(() => {
+          this._refreshNeeded.next();
+        })
+      )
+  }
+
+  public getVoituresGarageDépot(): Observable<JsonModel> {
+    return this.httpRequestService.get("RAT", environment.apiUrl + DataWsConst.WS_VOITURES_GARAGE + "?avancement=Dépot");
   }
 }

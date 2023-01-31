@@ -4,9 +4,9 @@
   </button>
 </div>
 <div class="faire-devis-pop-up">
-  <h2>Faire un devis</h2>
+  <h3>Faire un devis</h3>
   <hr>
-  <h3>Voiture informations :</h3>
+  <h4>Voiture informations :</h4>
   <p><strong>Immatriculation : </strong> {{voiture_detail.voiture_immatriculation}}</p>
   <p><strong>Marque : </strong> {{voiture_detail.voiture_marque}}</p>
   <p><strong>Modele : </strong> {{voiture_detail.voiture_modele}}</p>
@@ -89,13 +89,13 @@
     </div>
   </div>
   <div style="float: right; margin-right: 50px; min-height: 250px">
-    <h3>Total : {{prix_devis}} Ar</h3>
+    <h4>Total : {{prix_devis}} Ar</h4>
       <form class="forms-sample" [formGroup] = "faireDevisForm">
         <div class="form-group">
           <label for="Description">Description</label>
           <textarea type="text" class="form-control" id="Description" formControlName="description"  placeholder="Description"></textarea>
         </div>
-        <button type="submit" class="btn btn-primary mr-2 close-screen" (click)="validerDevis()">Valider le devis</button>
+        <button type="submit" class="btn btn-primary mr-2 close-screen" (click)="validerDevis()">Proposer le devis</button>
       </form>
   </div>
 </div>

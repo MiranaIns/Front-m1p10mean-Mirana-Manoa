@@ -5,29 +5,31 @@ import {HttpStatusConst} from "../../../shared/constant/http-status.const";
 import {SnackBarComponent} from "../../../shared/components/snack-bar/snack-bar.component";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {DataErrorConst} from "../../../data/constant/data-error.const";
-import { VoitureInterface} from "../../../data/interfaces/voiture.interface";
 import {MatDialog} from "@angular/material/dialog";
 import {
   AjouterVoiturePopUpComponent
 } from "../../../shared/components/ajouter-voiture-pop-up/ajouter-voiture-pop-up.component";
-import {VoitureGarageService} from "../../../data/services/voiture-garage/voiture-garage.service";
+import {VoirDevisPopUpComponent} from "../../../shared/components/voir-devis-pop-up/voir-devis-pop-up.component";
 
 @Component({
   selector: 'app-voitures',
   templateUrl: './voitures.component.html',
   styleUrls: ['./voitures.component.css',
-    "../../../template/vendors/mdi/css/materialdesignicons.min.css"
+    "../../../template/vendors/mdi/css/materialdesignicons.min.css",
+    "../../../template/vendors/feather/feather.css",
+    "../../../template/vendors/ti-icons/css/themify-icons.css",
+    "../../../template/vendors/css/vendor.bundle.base.css",
+    "../../../template/css/vertical-layout-light/style.css"
   ]
 })
 export class VoituresComponent implements OnInit {
-  voitures : VoitureInterface[] = []
-  garage : VoitureInterface[] = [];
+  voitures : any[] = []
+  garage : any[] = [];
 
   constructor(
     private matDialog: MatDialog,
     private _snackBar: MatSnackBar,
-    private voituresService: VoituresService,
-    private voitureGarageService: VoitureGarageService
+    private voituresService: VoituresService
   ) {}
 
   ngOnInit() {
@@ -35,6 +37,9 @@ export class VoituresComponent implements OnInit {
       this.getAllVoitures();
     });
     this.getAllVoitures();
+    this.voituresService.refreshNeeded.subscribe(() => {
+      this.getAllVoituresInGarage();
+    });
     this.getAllVoituresInGarage();
   }
 
@@ -69,8 +74,9 @@ export class VoituresComponent implements OnInit {
   }
 
   private getAllVoituresInGarage() {
-    this.voituresService.getAllVoituresInGarage().subscribe({
+    this.voituresService.getVoituresGarage().subscribe({
       next: res => {
+        console.log(res);
         if(res.status != HttpStatusConst.SUCCESS ){
           this.openErrorSnackBar(DataErrorConst.UNKNOWN_ERROR);
         }
@@ -80,6 +86,7 @@ export class VoituresComponent implements OnInit {
             try {
               // @ts-ignore
               this.garage = data.voitures;
+              console.log(this.garage);
             }
             catch (e) {
               console.log(e);
@@ -99,11 +106,11 @@ export class VoituresComponent implements OnInit {
   }
 
 
-  private depotGarage(voiture : VoitureInterface) {
+  private depotGarage(voiture : any) {
     let voiture_uuid = {
       "voiture_uuid" : voiture.voiture_uuid
     }
-    this.voitureGarageService.depotGarage(voiture_uuid).subscribe({
+    this.voituresService.depotGarage(voiture_uuid).subscribe({
       next: res => {
         if(res.status != HttpStatusConst.CREATED ){
           this.openErrorSnackBar(DataErrorConst.UNKNOWN_ERROR);
@@ -154,6 +161,13 @@ export class VoituresComponent implements OnInit {
 
   showAddVoiturePopUp() {
     const dialogRef = this.matDialog.open(AjouterVoiturePopUpComponent, {
+      panelClass: "custom-container",
+      autoFocus: false });
+  }
+
+  showVoirDevisPopUp(voiture : any) {
+    const dialogRef = this.matDialog.open(VoirDevisPopUpComponent, {
+      data: {voiture_garage: voiture },
       panelClass: "custom-container",
       autoFocus: false });
   }

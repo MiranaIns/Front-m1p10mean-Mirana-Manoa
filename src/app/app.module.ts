@@ -21,6 +21,7 @@ import {MatDialogModule} from "@angular/material/dialog";
 import { ResponsableAtelierTemplateComponent } from './layout/components/responsable-atelier/responsable-atelier-template/responsable-atelier-template.component';
 import { DepotsComponent } from './modules/responsable-atelier/depots/depots.component';
 import { FaireDevisPopUpComponent } from "./shared/components/faire-devis-pop-up/faire-devis-pop-up.component";
+import { VoirDevisPopUpComponent } from './shared/components/voir-devis-pop-up/voir-devis-pop-up.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { FaireDevisPopUpComponent } from "./shared/components/faire-devis-pop-up
     AjouterVoiturePopUpComponent,
     ResponsableAtelierTemplateComponent,
     DepotsComponent,
-    FaireDevisPopUpComponent
+    FaireDevisPopUpComponent,
+    VoirDevisPopUpComponent
   ],
   imports: [
     BrowserModule,

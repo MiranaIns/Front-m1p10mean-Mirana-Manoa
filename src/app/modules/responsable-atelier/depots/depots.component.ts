@@ -1,12 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {VoitureGarageService} from "../../../data/services/voiture-garage/voiture-garage.service";
 import {HttpStatusConst} from "../../../shared/constant/http-status.const";
 import {DataErrorConst} from "../../../data/constant/data-error.const";
 import {SnackBarComponent} from "../../../shared/components/snack-bar/snack-bar.component";
 import {MatSnackBar} from "@angular/material/snack-bar";
-import {
-  AjouterVoiturePopUpComponent
-} from "../../../shared/components/ajouter-voiture-pop-up/ajouter-voiture-pop-up.component";
 import {MatDialog} from "@angular/material/dialog";
 import {FaireDevisPopUpComponent} from "../../../shared/components/faire-devis-pop-up/faire-devis-pop-up.component";
 import {VoituresService} from "../../../data/services/voitures/voitures.service";
@@ -28,7 +24,6 @@ export class DepotsComponent implements OnInit {
     private voituresService : VoituresService,
     private matDialog: MatDialog,
     private _snackBar: MatSnackBar,
-    private voitureGarageService : VoitureGarageService
   ) { }
 
   ngOnInit(): void {
@@ -52,7 +47,7 @@ export class DepotsComponent implements OnInit {
   }
 
   getVoituresGarageDépot() {
-    this.voitureGarageService.getVoituresGarageDépot().subscribe({
+    this.voituresService.getVoituresGarageDépot().subscribe({
       next: res => {
         if(res.status != HttpStatusConst.SUCCESS ){
           this.openErrorSnackBar(DataErrorConst.UNKNOWN_ERROR);

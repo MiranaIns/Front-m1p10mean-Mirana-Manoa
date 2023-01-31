@@ -16,7 +16,6 @@ export class HttpRequestService {
 
   protected setAuthorizationTokenValue(authorization: any) : void {
     if(authorization == "USER") {
-      console.log("ato");
       this.authorizationToken = 'Bearer ' + this.localStorageService.getItem(LocalStorageConst.ACCESS_TOKEN);
     }
     else if(authorization == "RAT") {
