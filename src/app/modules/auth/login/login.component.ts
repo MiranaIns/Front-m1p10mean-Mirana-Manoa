@@ -34,8 +34,8 @@ export class LoginComponent implements OnInit {
     private localStorageService : LocalStorageService
   ) {
     this.loginForm = new FormGroup({
-      email: new FormControl(),
-      password: new FormControl()
+      email: new FormControl("utilisateur@gmail.com"),
+      password: new FormControl("utilisateur")
     });
   }
 

@@ -44,8 +44,8 @@ export class AdminLoginComponent implements OnInit {
     private localStorageService : LocalStorageService
   ) {
     this.loginForm = new FormGroup({
-      email: new FormControl(),
-      password: new FormControl(),
+      email: new FormControl("responsable.atelier@gmail.com"),
+      password: new FormControl("rat"),
       utilisateur_type : new FormControl()
     });
   }
