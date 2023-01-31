@@ -1,0 +1,30 @@
+<div class="close-screen">
+  <button mat-icon-button (click)="onNoClick()">
+    <mat-icon [ngStyle]="{'color':'red'}">close</mat-icon>
+  </button>
+</div>
+<div class="ajouter-voiture-pop-up">
+  <h3>Ajouter une voiture</h3>
+  <form class="forms-sample" [formGroup] = "ajouterVoitureForm">
+    <div class="form-group">
+      <label for="Marque">Marque</label>
+      <input type="text" class="form-control" id="Marque" formControlName="marque"  placeholder="Marque">
+    </div>
+    <div class="form-group">
+      <label for="Modele">Modele</label>
+      <input type="text" class="form-control" id="Modele" formControlName="modele"  placeholder="Modele">
+    </div>
+    <div class="form-group">
+      <label for="Immatriculation">Immatriculation</label>
+      <input type="text" class="form-control" id="Immatriculation" formControlName="immatriculation"  placeholder="Immatriculation">
+    </div>
+    <div class="form-group">
+      <label for="Couleur">Couleur</label>
+      <select class="form-control form-control-lg" id="Couleur" formControlName="couleur" placeholder="Couleur" style="color: #495057">
+        <option *ngFor="let couleur of couleurs" value="{{couleur.valeur}}">{{couleur.display_type}}</option>
+      </select>
+    </div>
+    <button type="submit" class="btn btn-primary mr-2 close-screen" (click)="ajouterVoiture()">Ajouter</button>
+  </form>
+</div>
+
